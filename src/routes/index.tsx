@@ -1,214 +1,294 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { allEducations, allJobs } from "content-collections";
-import { marked } from "marked";
-import { useMemo, useState } from "react";
-import { Badge } from "#/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "#/components/ui/card";
-import { Checkbox } from "#/components/ui/checkbox";
-import {
-	HoverCard,
-	HoverCardContent,
-	HoverCardTrigger,
-} from "#/components/ui/hover-card";
-import { Separator } from "#/components/ui/separator";
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
+import { createFileRoute } from '@tanstack/react-router'
+import { PageSection } from '#/components/layout/PageSection'
+import { FloatingSectionNav } from '#/components/navigation/FloatingSectionNav'
+import { SimpleRows } from '#/components/lists/SimpleRows'
+import { InlineRouterLink } from '#/components/router/inline-router-link'
+import { EntryList } from '#/components/home/EntryList'
+import { ExperienceList } from '#/components/home/ExperienceList'
 
-export const Route = createFileRoute("/")({
-	component: App,
-});
+export const Route = createFileRoute('/')({ component: HomeRoute })
 
-function App() {
-	const [selectedTags, setSelectedTags] = useState<string[]>([]);
+const sectionNav = [
+  { id: 'maintained', label: 'Maintained' },
+  { id: 'built', label: 'Built' },
+  { id: 'research', label: 'Research' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'education', label: 'Education' },
+] as const
 
-	// Get unique tags from all jobs
-	const allTags = useMemo(() => {
-		const tags = new Set<string>();
-		allJobs.forEach((job) => {
-			job.tags.forEach((tag) => tags.add(tag));
-		});
-		return Array.from(tags).sort();
-	}, []);
+const maintainedProjects = [
+  {
+    title: 'SUT Mechanical Engineering Web Platform',
+    period: 'December 2025 - Present',
+    intro:
+      'A bilingual Thai-English web platform for the School of Mechanical Engineering, Suranaree University of Technology.',
+    notes: [
+      'The school needs public content, staff records, thesis and final-project discovery, and administrative publishing in one maintainable system.',
+      'I designed and implemented the UI, frontend, backend, database, CMS structure, and bilingual content schemas.',
+      'The public site, database, and controllers for staff, thesis, and final-project discovery are complete. CMS workflows for admins, editors, and faculty are in progress.',
+    ],
+    tools: 'TypeScript, React, backend APIs, database design, CMS workflows',
+    postmortem: '/catalog/sut-mechanical-engineering',
+  },
+  {
+    title: 'GDGoC ELTE Chapter Infrastructure',
+    period: 'November 2025 - Present',
+    intro:
+      'Public-facing infrastructure for Google Developer Group on Campus at Eotvos Lorand University.',
+    notes: [
+      'Chapter resources, event links, and writeups should not disappear into one-off social posts.',
+      'I built and maintained the chapter website, link hub, and structure for publishing event resources and retrospectives.',
+      'The implementation stays close to the chapter workflow: fast publication, clear navigation, and easy access to event material.',
+    ],
+    tools: 'React, TypeScript, TanStack Router, MUI, content pipeline',
+    postmortem: '/catalog/gdgoc-elte',
+  },
+] as const
 
-	// Filter jobs based on selected tags
-	const filteredJobs = useMemo(() => {
-		if (selectedTags.length === 0) return allJobs;
-		return allJobs.filter((job) =>
-			selectedTags.some((tag) => job.tags.includes(tag)),
-		);
-	}, [selectedTags]);
+const builtProjects = [
+  {
+    title: 'Geometric Transformation Visualizer',
+    period: 'June 2025 - December 2025',
+    intro:
+      'A Desmos-based classroom visualizer commissioned by the Department of Mathematics, Ayutthaya Witthayalai School.',
+    notes: [
+      'Mathayom 2 students needed a clearer way to see translation, rotation, scaling, and reflection as adjustable transformations.',
+      'I built an interactive visualizer around adjustable parameters and classroom demonstration flow.',
+      'It was adopted as a primary classroom demonstration tool for a cohort of about 150 students.',
+    ],
+    tools: 'Vite, TypeScript, React, Desmos',
+    postmortem: '/catalog/geometric-transformation-visualizer',
+  },
+  {
+    title: 'Structogram Builder',
+    period: 'November 2023 - May 2024',
+    intro:
+      'An online Nassi-Shneiderman diagram builder for programming coursework and diagram-based explanation.',
+    notes: [
+      'Drawing structograms by hand can become slower than the programming exercise itself.',
+      'I implemented the editor-to-diagram workflow, export behavior, and documentation around the tool.',
+      'The important part was turning code structure into a diagram students could inspect, share, and reuse.',
+    ],
+    tools: 'React, TypeScript, Vite, MUI, CodeMirror, html-to-image',
+    postmortem: '/catalog/structogram-builder',
+  },
+  {
+    title: 'GitHub Repository Aggregator',
+    period: '2024',
+    intro:
+      'A local-first interface for collecting repository data and making scattered GitHub state easier to inspect.',
+    notes: [
+      'Repository and issue tracking becomes noisy when the useful view is spread across too many GitHub pages.',
+      'I worked through GitHub API integration, local data flow, and a compact developer-facing interface.',
+      'The project is small, but it shows the kind of local tool I build when a web UI is too scattered for the task.',
+    ],
+    tools: 'Tauri, Rust, React, TypeScript, GitHub API, local persistence',
+    postmortem: '/catalog/github-repository-aggregator',
+  },
+  {
+    title: 'Propositional Logic Engine',
+    period: '2025',
+    intro:
+      'A parser and visualizer for Boolean expressions, evaluation, and syntax-tree based explanation.',
+    notes: [
+      'Logic output is not useful when the rules and transformations are hidden behind a black box.',
+      'I built parsing, evaluation, and visual explanation around explicit expression structure.',
+      'The project is technical by nature, so the postmortem needs to explain the constraints without dressing it up as product theatre.',
+    ],
+    tools: 'TypeScript, Ohm.js, Monaco, KaTeX, visx',
+    postmortem: '/catalog/propositional-logic-engine',
+  },
+] as const
 
-	return (
-		<div className="min-h-screen bg-linear-to-b from-gray-50 to-gray-100">
-			<div className="flex">
-				{/* Sidebar with filters */}
-				<div className="w-72 min-h-screen bg-white border-r shadow-sm p-8 sticky top-0">
-					<h3 className="text-lg font-semibold mb-6 text-gray-900">
-						Skills & Technologies
-					</h3>
-					<div className="space-y-4">
-						{allTags.map((tag) => (
-							<div key={tag} className="flex items-center space-x-3 group">
-								<Checkbox
-									id={tag}
-									checked={selectedTags.includes(tag)}
-									onCheckedChange={(checked) => {
-										if (checked) {
-											setSelectedTags([...selectedTags, tag]);
-										} else {
-											setSelectedTags(selectedTags.filter((t) => t !== tag));
-										}
-									}}
-									className="data-[state=checked]:bg-blue-600"
-								/>
-								<label
-									htmlFor={tag}
-									className="text-sm font-medium leading-none text-gray-700 group-hover:text-gray-900 transition-colors cursor-pointer"
-								>
-									{tag}
-								</label>
-							</div>
-						))}
-					</div>
-				</div>
+const researchItems = [
+  {
+    title: 'Robot Navigation Perception Pipeline',
+    period: 'July 2025 - January 2026',
+    intro:
+      'Research assistant work for a robot-navigation and path-planning project at the Department of Artificial Intelligence, ELTE.',
+    notes: [
+      'The robot needed robust control from overhead workspace imagery even when object placement changed.',
+      'I trained and labeled the image-recognition model, extracted keypoints from fixed-camera frames, and published perception data through ROS messages.',
+      'The related TDK research received Second Prize, qualified for OTDK, and later received a Morgan Stanley-funded novel research award.',
+    ],
+    tools: 'ROS, fixed-camera imagery, image recognition, keypoint extraction',
+    postmortem: '/catalog/piroska-research',
+  },
+  {
+    title: 'TDK / OTDK Research Project',
+    period: '2025',
+    intro:
+      'Research writing and presentation around the robot-navigation project and its evaluation.',
+    notes: [
+      'I prepared the research project for TDK presentation and later OTDK qualification.',
+      'This is not just a credential line. The research page should keep the method, constraints, and what I learned visible.',
+    ],
+    tools: 'Research writing, presentation, experiment notes',
+    postmortem: '/catalog/tdk-otdk',
+  },
+] as const
 
-				{/* Main content */}
-				<div className="flex-1 p-8 lg:p-12">
-					<div className="max-w-4xl mx-auto space-y-12">
-						<div className="text-center space-y-4">
-							<h1 className="text-5xl font-bold bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
-								My Resume
-							</h1>
-							<p className="text-gray-600 text-lg">
-								Professional Experience & Education
-							</p>
-							<Separator className="mt-8" />
-						</div>
+const experienceItems = [
+  {
+    title: 'Technical Team Leader',
+    period: 'October 2024 - January 2026',
+    organization: 'Google Developer Group on Campus, Eotvos Lorand University',
+    details: [
+      'Selected as Technical Team Leader through application, then invited to return in the following chapter.',
+      'Directed technical delivery of the chapter inaugural algorithm contest: cross-language problem set, submission workflow, judging, and a 30-participant event.',
+      'Built public-facing chapter infrastructure, including a chapter-branded link hub and groundwork for a post-event retrospective platform.',
+    ],
+  },
+  {
+    title: 'Functional Programming Teaching Assistant',
+    period: 'February 2024 - May 2024',
+    organization:
+      'Department of Programming Languages and Compilers, Eotvos Lorand University',
+    details: [
+      'Graded weekly coursework for about 45 students and provided regular feedback throughout the term.',
+      'Held 10 consultation sessions across a 12-week term, including weekend support, with roughly 10 students per session.',
+    ],
+  },
+] as const
 
-						{/* Career Summary */}
-						<Card className="border-0 shadow-lg bg-white/50 backdrop-blur-sm">
-							<CardHeader>
-								<CardTitle className="text-2xl text-gray-900">
-									Career Summary
-								</CardTitle>
-							</CardHeader>
-							<CardContent>
-								<div className="flex items-center gap-8">
-									<p className="text-gray-700 flex-1 leading-relaxed">
-										I am a passionate and driven professional seeking
-										opportunities that will leverage my extensive experience in
-										frontend development while providing continuous growth and
-										learning opportunities. My goal is to contribute to
-										innovative projects that challenge me to expand my skill set
-										and make meaningful impacts through technology.
-									</p>
-									<img
-										src="/headshot-on-white.jpg"
-										alt="Professional headshot"
-										className="w-44 h-52 rounded-2xl object-cover shadow-md transition-transform hover:scale-105"
-									/>
-								</div>
-							</CardContent>
-						</Card>
+const educationItems = [
+  {
+    title: 'Bachelor of Science in Computer Science with Honors',
+    body: 'Eotvos Lorand University, Budapest. Cumulative Grade Average: 4.51 / 5.00. Stipendium Hungaricum Scholarship.',
+  },
+  {
+    title: 'IELTS Academic',
+    body: 'Overall Band Score: 7.5, CEFR C1. Listening 8.5, Reading 8.0, Writing 6.5, Speaking 7.0.',
+  },
+  {
+    title: 'TOEIC Listening & Reading Test',
+    body: 'Total Score: 930 / 990. Listening 465 / Reading 465.',
+  },
+] as const
 
-						{/* Work Experience */}
-						<section className="space-y-6">
-							<h2 className="text-3xl font-semibold text-gray-900">
-								Work Experience
-							</h2>
-							<div className="space-y-6">
-								{filteredJobs.map((job) => (
-									<Card
-										key={job.jobTitle}
-										className="border-0 shadow-md hover:shadow-lg transition-shadow"
-									>
-										<CardHeader>
-											<div className="flex justify-between items-start">
-												<div className="space-y-2">
-													<CardTitle className="text-xl text-gray-900">
-														{job.jobTitle}
-													</CardTitle>
-													<p className="text-blue-600 font-medium">
-														{job.company} - {job.location}
-													</p>
-												</div>
-												<Badge variant="secondary" className="text-sm">
-													{job.startDate} - {job.endDate || "Present"}
-												</Badge>
-											</div>
-										</CardHeader>
-										<CardContent>
-											<p className="text-gray-700 mb-6 leading-relaxed">
-												{job.summary}
-											</p>
-											<div className="flex flex-wrap gap-2">
-												{job.tags.map((tag) => (
-													<HoverCard key={tag}>
-														<HoverCardTrigger>
-															<Badge
-																variant="outline"
-																className="hover:bg-gray-100 transition-colors cursor-pointer"
-															>
-																{tag}
-															</Badge>
-														</HoverCardTrigger>
-														<HoverCardContent className="w-64">
-															<p className="text-sm text-gray-600">
-																Experience with {tag} in professional
-																development
-															</p>
-														</HoverCardContent>
-													</HoverCard>
-												))}
-											</div>
-											{job.content && (
-												<div
-													className="mt-6 text-gray-700 prose prose-sm max-w-none"
-													dangerouslySetInnerHTML={{
-														__html: marked(job.content),
-													}}
-												/>
-											)}
-										</CardContent>
-									</Card>
-								))}
-							</div>
-						</section>
+function HomeRoute() {
+  return (
+    <Box
+      component="main"
+      sx={{
+        minHeight: '100dvh',
+      }}
+    >
+      <FloatingSectionNav items={sectionNav} label="Landing page sections" />
 
-						{/* Education */}
-						<section className="space-y-6">
-							<h2 className="text-3xl font-semibold text-gray-900">
-								Education
-							</h2>
-							<div className="space-y-6">
-								{allEducations.map((education) => (
-									<Card
-										key={education.school}
-										className="border-0 shadow-md hover:shadow-lg transition-shadow"
-									>
-										<CardHeader>
-											<CardTitle className="text-xl text-gray-900">
-												{education.school}
-											</CardTitle>
-										</CardHeader>
-										<CardContent>
-											<p className="text-gray-700 leading-relaxed">
-												{education.summary}
-											</p>
-											{education.content && (
-												<div
-													className="mt-6 text-gray-700 prose prose-sm max-w-none"
-													dangerouslySetInnerHTML={{
-														__html: marked(education.content),
-													}}
-												/>
-											)}
-										</CardContent>
-									</Card>
-								))}
-							</div>
-						</section>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+      <Container
+        maxWidth="lg"
+        sx={{
+          px: { xs: 2.5, sm: 4 },
+          pt: { xs: 10, md: 12 },
+          pb: { xs: 8, md: 10 },
+        }}
+      >
+        <Stack spacing={{ xs: 7, md: 9 }}>
+          <Stack
+            component="section"
+            spacing={{ xs: 4, md: 5 }}
+            sx={{ maxWidth: 900 }}
+          >
+            <Stack spacing={2}>
+              <Typography
+                component="p"
+                sx={(theme) => ({
+                  color: theme.palette.primary.main,
+                  fontSize: 12,
+                  fontWeight: 760,
+                  letterSpacing: 0,
+                  textTransform: 'uppercase',
+                })}
+              >
+                Eurydia
+              </Typography>
+
+              <Typography
+                component="h1"
+                sx={{
+                  maxWidth: 780,
+                  fontSize: { xs: 44, sm: 60, md: 80 },
+                  fontWeight: 780,
+                  lineHeight: 0.95,
+                  letterSpacing: 0,
+                }}
+              >
+                Thanakorn Phuttharaksa
+              </Typography>
+            </Stack>
+
+            <Stack
+              spacing={1.5}
+              sx={(theme) => ({
+                maxWidth: 780,
+                color: theme.palette.text.secondary,
+                fontSize: { xs: 18, md: 20 },
+                lineHeight: 1.7,
+              })}
+            >
+              <Typography sx={{ font: 'inherit' }}>
+                If you were invited here and you are in a hurry, start with the{' '}
+                <InlineRouterLink to="/portfolio">
+                  compact summary
+                </InlineRouterLink>{' '}
+                of my work.
+              </Typography>
+              <Typography sx={{ font: 'inherit' }}>
+                If you were invited here and you are not in a hurry, look
+                around.
+              </Typography>
+              <Typography sx={{ font: 'inherit' }}>
+                If you stumbled here, look around anyway.
+              </Typography>
+            </Stack>
+          </Stack>
+
+          <PageSection
+            id="maintained"
+            title="Projects I maintain"
+            body="These are systems I built and still treat as ongoing responsibility. The compact page gives the short version; this page gives them enough room to be read properly."
+          >
+            <EntryList items={maintainedProjects} />
+          </PageSection>
+
+          <PageSection
+            id="built"
+            title="Other projects I have built"
+            body="Finished work that should be read as work, not as a stack inventory. Each project links to a postmortem page where the repository, screenshots, and extra details can live."
+          >
+            <EntryList items={builtProjects} />
+          </PageSection>
+
+          <PageSection
+            id="research"
+            title="Research and notes"
+            body="Research-adjacent work belongs outside the normal project list because the interesting part is often method, constraint, or presentation rather than deployment."
+          >
+            <EntryList items={researchItems} />
+          </PageSection>
+
+          <PageSection
+            id="experience"
+            title="Experience"
+            body="Roles where the work was not only code: delivery, teaching, review, coordination, and explaining things to other people."
+          >
+            <ExperienceList items={experienceItems} />
+          </PageSection>
+
+          <PageSection
+            id="education"
+            title="Education and certifications"
+            body="Degree, scholarship, and language qualifications. Useful context, kept separate from the project sections."
+          >
+            <SimpleRows items={educationItems} initialVisibleItems={3} />
+          </PageSection>
+        </Stack>
+      </Container>
+    </Box>
+  )
 }
