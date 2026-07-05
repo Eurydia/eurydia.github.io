@@ -4,12 +4,10 @@ import Link from '@mui/material/Link'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import Typography from '@mui/material/Typography'
-
 import { SectionLabel } from '#/components/common/section-label'
 import { ShowMore } from '#/components/common/show-more'
 import { ImageDisplay } from '#/components/media/image-display'
 import { useVisibleItems } from '#/hooks/use-visible-items'
-
 import type { FC } from 'react'
 import type { HomeEntryItem } from '#/types/home'
 
@@ -40,7 +38,7 @@ export const EntryList: FC<{
                 </Typography>
                 <SectionLabel>{item.period}</SectionLabel>
 
-                <Typography variant="body1" component="p" color="text.primary">
+                <Typography variant="body1" component="p">
                   {item.intro}
                 </Typography>
 
@@ -50,7 +48,9 @@ export const EntryList: FC<{
                       key={note}
                       component="li"
                       variant="body2"
-                      color="text.secondary"
+                      sx={(theme) => ({
+                        color: theme.palette.text.secondary,
+                      })}
                     >
                       {note}
                     </Typography>
@@ -63,7 +63,9 @@ export const EntryList: FC<{
                 <Typography
                   variant="body2"
                   component="p"
-                  color="text.secondary"
+                  sx={(theme) => ({
+                    color: theme.palette.text.secondary,
+                  })}
                 >
                   {item.tools}
                 </Typography>
@@ -71,8 +73,10 @@ export const EntryList: FC<{
                 <Link
                   href={item.postmortem}
                   underline="always"
-                  color="primary"
                   variant="subtitle2"
+                  sx={(theme) => ({
+                    color: theme.palette.primary.main,
+                  })}
                 >
                   Read postmortem
                 </Link>

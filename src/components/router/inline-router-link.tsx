@@ -3,7 +3,7 @@ import { RouterLink } from './router-link'
 import type { ComponentProps, FC, ReactNode } from 'react'
 
 export const InlineRouterLink: FC<
-  Omit<ComponentProps<typeof RouterLink>, 'children'> & {
+  Omit<ComponentProps<typeof RouterLink>, 'children' | 'color' | 'sx'> & {
     children: ReactNode
   }
 > = (props) => {
@@ -11,7 +11,9 @@ export const InlineRouterLink: FC<
     <RouterLink
       {...props}
       underline={props.underline ?? 'always'}
-      color={props.color ?? 'primary'}
+      sx={(theme) => ({
+        color: theme.palette.primary.main,
+      })}
     >
       {props.children} <ArrowForwardIcon fontSize="inherit" />
     </RouterLink>

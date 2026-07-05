@@ -1,6 +1,5 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Button from '@mui/material/Button'
-
 import type { FC } from 'react'
 
 export const ShowMore: FC<{
@@ -16,10 +15,12 @@ export const ShowMore: FC<{
     <Button
       type="button"
       variant="text"
-      color="primary"
       size="small"
       endIcon={<ExpandMoreIcon />}
       onClick={props.onClick}
+      sx={(theme) => ({
+        color: theme.palette.primary.main,
+      })}
     >
       Show {props.nextVisibleCount} more
     </Button>

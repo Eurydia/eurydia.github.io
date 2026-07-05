@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
+import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { createFileRoute } from '@tanstack/react-router'
-
 import { SectionLabel } from '#/components/common/section-label'
 import { FloatingSectionNav } from '#/components/navigation/floating-section-nav'
 import type { FC, ReactNode } from 'react'
@@ -213,18 +213,24 @@ function PortfolioRoute() {
           })}
         >
           <ResumeSection id="overview">
-            <Typography variant="overline" component="p" color="primary">
+            <Typography
+              variant="overline"
+              component="p"
+              sx={(theme) => ({
+                color: theme.palette.primary.main,
+              })}
+            >
               Online resume
             </Typography>
 
-            <Typography variant="h1" component="h1" color="text.primary">
+            <Typography variant="h1" component="h1">
               Thanakorn Phuttharaksa
             </Typography>
 
             <Stack
               direction={{ xs: 'column', sm: 'row' }}
-              color="text.secondary"
               sx={(theme) => ({
+                color: theme.palette.text.secondary,
                 gap: {
                   xs: theme.spacing(0.75),
                   sm: theme.spacing(2),
@@ -336,7 +342,7 @@ const ResumeSection: FC<{
       })}
     >
       {props.title ? (
-        <Typography variant="h2" component="h2" color="text.primary">
+        <Typography variant="h2" component="h2">
           {props.title}
         </Typography>
       ) : null}
@@ -357,30 +363,23 @@ const ResumeEntry: FC<{
 }> = (props) => {
   return (
     <Box sx={(theme) => ({ py: theme.spacing(2.25) })}>
-      <Box
-        sx={(theme) => ({
-          display: 'grid',
-          gap: {
-            xs: theme.spacing(1.25),
-            sm: theme.spacing(3),
-          },
-          gridTemplateColumns: {
-            xs: '1fr',
-            sm: `${theme.spacing(23.75)} 1fr`,
-          },
-        })}
-      >
-        <Box>
-          <Typography variant="h3" component="h3" color="text.primary">
+      <Grid container rowSpacing={1.25} columnSpacing={3}>
+        <Grid size={{ xs: 12, sm: 4 }}>
+          <Typography variant="h3" component="h3">
             {props.title}
           </Typography>
           <SectionLabel>{props.period}</SectionLabel>
-        </Box>
+        </Grid>
 
-        <Box>
+        <Grid size={{ xs: 12, sm: 8 }}>
           <BodyText>{props.subtitle ?? props.organization}</BodyText>
           {props.location ? (
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              sx={(theme) => ({
+                color: theme.palette.text.secondary,
+              })}
+            >
               {props.location}
             </Typography>
           ) : null}
@@ -389,8 +388,8 @@ const ResumeEntry: FC<{
           {props.postmortems ? (
             <PostmortemLinks items={props.postmortems} />
           ) : null}
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
     </Box>
   )
 }
@@ -408,7 +407,13 @@ const ProjectEntry: FC<{
       period={props.period}
       bullets={props.bullets}
     >
-      <Typography variant="body2" component="p" color="text.secondary">
+      <Typography
+        variant="body2"
+        component="p"
+        sx={(theme) => ({
+          color: theme.palette.text.secondary,
+        })}
+      >
         {props.tools}
       </Typography>
       {props.postmortems ? <PostmortemLinks items={props.postmortems} /> : null}
@@ -437,8 +442,10 @@ const PostmortemLinks: FC<{ items: readonly PostmortemLink[] }> = (props) => {
           key={item.href}
           href={item.href}
           underline="always"
-          color="primary"
           variant="subtitle2"
+          sx={(theme) => ({
+            color: theme.palette.primary.main,
+          })}
         >
           {item.title}
         </Link>
@@ -456,30 +463,28 @@ const ScoreRow: FC<{
   return (
     <Box
       sx={(theme) => ({
-        display: 'grid',
-        gap: {
-          xs: theme.spacing(0.75),
-          sm: theme.spacing(3),
-        },
-        gridTemplateColumns: {
-          xs: '1fr',
-          sm: `${theme.spacing(23.75)} 1fr`,
-        },
         py: theme.spacing(2),
       })}
     >
-      <Box>
-        <Typography variant="h3" component="h3" color="text.primary">
-          {props.title}
-        </Typography>
-        <SectionLabel>{props.period}</SectionLabel>
-      </Box>
-      <Box>
-        <BodyText>{props.summary}</BodyText>
-        <Typography variant="body2" color="text.secondary">
-          {props.details}
-        </Typography>
-      </Box>
+      <Grid container rowSpacing={0.75} columnSpacing={3}>
+        <Grid size={{ xs: 12, sm: 4 }}>
+          <Typography variant="h3" component="h3">
+            {props.title}
+          </Typography>
+          <SectionLabel>{props.period}</SectionLabel>
+        </Grid>
+        <Grid size={{ xs: 12, sm: 8 }}>
+          <BodyText>{props.summary}</BodyText>
+          <Typography
+            variant="body2"
+            sx={(theme) => ({
+              color: theme.palette.text.secondary,
+            })}
+          >
+            {props.details}
+          </Typography>
+        </Grid>
+      </Grid>
     </Box>
   )
 }
@@ -499,7 +504,6 @@ const BulletList: FC<{ items: readonly string[] }> = (props) => {
           key={item}
           component="li"
           variant="body2"
-          color="text.primary"
           sx={(theme) => ({
             pl: theme.spacing(0.25),
           })}
@@ -512,9 +516,5 @@ const BulletList: FC<{ items: readonly string[] }> = (props) => {
 }
 
 const BodyText: FC<{ children: ReactNode }> = (props) => {
-  return (
-    <Typography variant="body2" color="text.primary">
-      {props.children}
-    </Typography>
-  )
+  return <Typography variant="body2">{props.children}</Typography>
 }

@@ -10,7 +10,6 @@ export const AppFooter: FC = () => {
   return (
     <Box
       component="footer"
-      color="text.primary"
       sx={(theme) => ({
         bgcolor: alpha(theme.palette.primary.main, 0.06),
         borderTop: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
@@ -52,10 +51,21 @@ export const AppFooter: FC = () => {
             })}
           >
             <Box>
-              <Typography variant="overline" component="p" color="primary">
+              <Typography
+                variant="overline"
+                component="p"
+                sx={(theme) => ({
+                  color: theme.palette.primary.main,
+                })}
+              >
                 Thanakorn Phuttharaksa
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography
+                variant="body2"
+                sx={(theme) => ({
+                  color: theme.palette.text.secondary,
+                })}
+              >
                 Portfolio and project notes.
               </Typography>
             </Box>
@@ -87,7 +97,12 @@ export const AppFooter: FC = () => {
               pt: theme.spacing(2),
             })}
           >
-            <Typography variant="caption" color="text.secondary">
+            <Typography
+              variant="caption"
+              sx={(theme) => ({
+                color: theme.palette.text.secondary,
+              })}
+            >
               {`© ${new Date().getFullYear()} Thanakorn Phuttharaksa`}
             </Typography>
           </Box>
@@ -109,8 +124,10 @@ const FooterLink: FC<{
       target={props.target}
       rel={props.rel}
       underline="always"
-      color="text.primary"
       variant="subtitle2"
+      sx={(theme) => ({
+        color: theme.palette.text.primary,
+      })}
     >
       {props.children}
     </Link>

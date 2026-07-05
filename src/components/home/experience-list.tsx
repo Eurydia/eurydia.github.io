@@ -3,12 +3,10 @@ import Grid from '@mui/material/Grid'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import Typography from '@mui/material/Typography'
-
 import { SectionLabel } from '#/components/common/section-label'
 import { ShowMore } from '#/components/common/show-more'
 import { ImageDisplay } from '#/components/media/image-display'
 import { useVisibleItems } from '#/hooks/use-visible-items'
-
 import type { FC } from 'react'
 import type { HomeExperienceItem } from '#/types/home'
 
@@ -39,7 +37,7 @@ export const ExperienceList: FC<{
                 </Typography>
                 <SectionLabel>{item.period}</SectionLabel>
 
-                <Typography variant="body1" component="p" color="text.primary">
+                <Typography variant="body1" component="p">
                   {item.organization}
                 </Typography>
 
@@ -49,7 +47,9 @@ export const ExperienceList: FC<{
                       key={detail}
                       component="li"
                       variant="body2"
-                      color="text.secondary"
+                      sx={(theme) => ({
+                        color: theme.palette.text.secondary,
+                      })}
                     >
                       {detail}
                     </Typography>

@@ -3,11 +3,9 @@ import Grid from '@mui/material/Grid'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import Typography from '@mui/material/Typography'
-
 import { ShowMore } from '#/components/common/show-more'
 import { ImageDisplay } from '#/components/media/image-display'
 import { useVisibleItems } from '#/hooks/use-visible-items'
-
 import type { FC } from 'react'
 import type { CredentialItem } from '#/types/credential'
 
@@ -36,7 +34,12 @@ export const CredentialList: FC<{
                 <Typography variant="h3" component="h3">
                   {item.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body2"
+                  sx={(theme) => ({
+                    color: theme.palette.text.secondary,
+                  })}
+                >
                   {item.body}
                 </Typography>
               </Grid>

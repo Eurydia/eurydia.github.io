@@ -224,7 +224,13 @@ function HomeRoute() {
                 gap: theme.spacing(2),
               })}
             >
-              <Typography variant="overline" component="p" color="primary">
+              <Typography
+                variant="overline"
+                component="p"
+                sx={(theme) => ({
+                  color: theme.palette.primary.main,
+                })}
+              >
                 Eurydia
               </Typography>
 
@@ -238,18 +244,33 @@ function HomeRoute() {
                 gap: theme.spacing(1.5),
               })}
             >
-              <Typography variant="body1" color="text.secondary">
+              <Typography
+                variant="body1"
+                sx={(theme) => ({
+                  color: theme.palette.text.secondary,
+                })}
+              >
                 If you were invited here and you are in a hurry, start with the{' '}
                 <InlineRouterLink to="/portfolio">
                   compact summary
                 </InlineRouterLink>{' '}
                 of my work.
               </Typography>
-              <Typography variant="body1" color="text.secondary">
+              <Typography
+                variant="body1"
+                sx={(theme) => ({
+                  color: theme.palette.text.secondary,
+                })}
+              >
                 If you were invited here and you are not in a hurry, look
                 around.
               </Typography>
-              <Typography variant="body1" color="text.secondary">
+              <Typography
+                variant="body1"
+                sx={(theme) => ({
+                  color: theme.palette.text.secondary,
+                })}
+              >
                 If you stumbled here, look around anyway.
               </Typography>
             </Stack>

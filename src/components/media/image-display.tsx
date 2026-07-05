@@ -1,6 +1,4 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
-
 import type { FC } from 'react'
 
 export const ImageDisplay: FC<{
@@ -9,12 +7,9 @@ export const ImageDisplay: FC<{
   width?: number
   height?: number
 }> = (props) => {
-  const theme = useTheme()
   const imageWidth = props.width ?? 420
   const imageHeight = props.height ?? 260
-  const backgroundColor = theme.palette.background.paper.replace('#', '')
-  const foregroundColor = theme.palette.primary.main.replace('#', '')
-  const fallbackSrc = `https://placehold.co/${imageWidth}x${imageHeight}/${backgroundColor}/${foregroundColor}?text=${encodeURIComponent(props.label)}`
+  const fallbackSrc = `https://placehold.co/${imageWidth}x${imageHeight}?text=${encodeURIComponent(props.label)}`
 
   return (
     <Box
@@ -28,9 +23,9 @@ export const ImageDisplay: FC<{
         aspectRatio: `${imageWidth} / ${imageHeight}`,
         objectFit: 'cover',
         border: 1,
-        borderColor: 'divider',
+        borderColor: theme.palette.divider,
         borderRadius: theme.shape.borderRadius,
-        bgcolor: 'background.paper',
+        bgcolor: theme.palette.background.paper,
       })}
     />
   )
