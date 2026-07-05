@@ -9,13 +9,13 @@ export const GridBackground: FC<{ children: ReactNode }> = (props) => {
       color="text.primary"
       sx={(theme) => ({
         minHeight: '100dvh',
-        bgcolor: theme.palette.background.default,
+        bgcolor: 'background.default',
         backgroundImage: [
           `linear-gradient(${alpha(theme.palette.primary.main, 0.08)} 1px, ${alpha(theme.palette.primary.main, 0)} 1px)`,
           `linear-gradient(90deg, ${alpha(theme.palette.primary.main, 0.08)} 1px, ${alpha(theme.palette.primary.main, 0)} 1px)`,
         ].join(', '),
         backgroundPosition: 'center top',
-        backgroundSize: '32px 32px',
+        backgroundSize: theme.spacing(4),
       })}
     >
       {props.children}

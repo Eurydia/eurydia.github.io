@@ -3,12 +3,12 @@ import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { createFileRoute } from '@tanstack/react-router'
-import { PageSection } from '#/components/layout/PageSection'
-import { FloatingSectionNav } from '#/components/navigation/FloatingSectionNav'
-import { SimpleRows } from '#/components/lists/SimpleRows'
+import { PageSection } from '#/components/layout/page-section'
+import { FloatingSectionNav } from '#/components/navigation/floating-section-nav'
+import { CredentialList } from '#/components/lists/credential-list'
 import { InlineRouterLink } from '#/components/router/inline-router-link'
-import { EntryList } from '#/components/home/EntryList'
-import { ExperienceList } from '#/components/home/ExperienceList'
+import { EntryList } from '#/components/home/entry-list'
+import { ExperienceList } from '#/components/home/experience-list'
 
 export const Route = createFileRoute('/')({ component: HomeRoute })
 
@@ -182,77 +182,74 @@ const educationItems = [
 
 function HomeRoute() {
   return (
-    <Box
-      component="main"
-      sx={{
-        minHeight: '100dvh',
-      }}
-    >
+    <Box component="main">
       <FloatingSectionNav items={sectionNav} label="Landing page sections" />
 
       <Container
         maxWidth="lg"
-        sx={{
-          px: { xs: 2.5, sm: 4 },
-          pt: { xs: 10, md: 12 },
-          pb: { xs: 8, md: 10 },
-        }}
+        sx={(theme) => ({
+          px: {
+            xs: theme.spacing(2.5),
+            sm: theme.spacing(4),
+          },
+          pt: {
+            xs: theme.spacing(10),
+            md: theme.spacing(12),
+          },
+          pb: {
+            xs: theme.spacing(8),
+            md: theme.spacing(10),
+          },
+        })}
       >
-        <Stack spacing={{ xs: 7, md: 9 }}>
+        <Stack
+          sx={(theme) => ({
+            gap: {
+              xs: theme.spacing(7),
+              md: theme.spacing(9),
+            },
+          })}
+        >
           <Stack
             component="section"
-            spacing={{ xs: 4, md: 5 }}
-            sx={{ maxWidth: 900 }}
+            sx={(theme) => ({
+              gap: {
+                xs: theme.spacing(4),
+                md: theme.spacing(5),
+              },
+            })}
           >
-            <Stack spacing={2}>
-              <Typography
-                component="p"
-                color="primary"
-                sx={{
-                  fontSize: 12,
-                  fontWeight: 760,
-                  letterSpacing: 0,
-                  textTransform: 'uppercase',
-                }}
-              >
+            <Stack
+              sx={(theme) => ({
+                gap: theme.spacing(2),
+              })}
+            >
+              <Typography variant="overline" component="p" color="primary">
                 Eurydia
               </Typography>
 
-              <Typography
-                component="h1"
-                sx={{
-                  maxWidth: 780,
-                  fontSize: { xs: 44, sm: 60, md: 80 },
-                  fontWeight: 780,
-                  lineHeight: 0.95,
-                  letterSpacing: 0,
-                }}
-              >
+              <Typography variant="h1" component="h1">
                 Thanakorn Phuttharaksa
               </Typography>
             </Stack>
 
             <Stack
-              spacing={1.5}
-              color="text.secondary"
-              sx={{
-                maxWidth: 780,
-                fontSize: { xs: 18, md: 20 },
-                lineHeight: 1.7,
-              }}
+              sx={(theme) => ({
+                gap: theme.spacing(1.5),
+              })}
             >
-              <Typography sx={{ font: 'inherit' }}>
+              <Typography variant="body1" color="text.secondary">
                 If you were invited here and you are in a hurry, start with the{' '}
                 <InlineRouterLink to="/portfolio">
                   compact summary
                 </InlineRouterLink>{' '}
                 of my work.
               </Typography>
-              <Typography sx={{ font: 'inherit' }}>
+              <Typography variant="body1" color="text.secondary">
                 If you were invited here and you are not in a hurry, look
                 around.
               </Typography>
-              <Typography sx={{ font: 'inherit' }}>
+              <Typography variant="body1" color="text.secondary">
                 If you stumbled here, look around anyway.
               </Typography>
             </Stack>
@@ -295,7 +292,10 @@ function HomeRoute() {
             title="Education and certifications"
             body="Degree, scholarship, and language qualifications. Useful context, kept separate from the project sections."
           >
-            <SimpleRows items={educationItems} {...educationDisplayOptions} />
+            <CredentialList
+              items={educationItems}
+              {...educationDisplayOptions}
+            />
           </PageSection>
         </Stack>
       </Container>

@@ -5,6 +5,7 @@ export type HomeEntryItem = {
   notes: readonly string[]
   tools: string
   postmortem: string
+  imageSrc?: string
 }
 
 export type HomeExperienceItem = {
@@ -12,4 +13,5 @@ export type HomeExperienceItem = {
   period: string
   organization: string
   details: readonly string[]
+  imageSrc?: string
 }

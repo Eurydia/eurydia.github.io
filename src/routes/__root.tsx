@@ -5,8 +5,8 @@ import CssBaseline from '@mui/material/CssBaseline'
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript'
 import { ThemeProvider } from '@mui/material/styles'
 import { theme } from '../theme'
-import { AppFooter } from '#/components/AppFooter'
-import { GridBackground } from '#/components/layout/GridBackground'
+import { AppFooter } from '#/components/app-footer'
+import { GridBackground } from '#/components/layout/grid-background'
 import type { ReactNode } from 'react'
 
 const RootDocument = (props: { children: ReactNode }) => {

@@ -12,17 +12,23 @@ export const FloatingSectionNav: FC<{
     <Box
       component="nav"
       aria-label={props.label}
-      sx={{
+      sx={(theme) => ({
         position: 'fixed',
         top: '50%',
-        right: { md: 22, lg: 36 },
-        zIndex: 10,
-        display: { xs: 'none', md: 'flex' },
+        right: {
+          md: theme.spacing(2.75),
+          lg: theme.spacing(4.5),
+        },
+        zIndex: theme.zIndex.appBar,
+        display: {
+          xs: 'none',
+          md: 'flex',
+        },
         transform: 'translateY(-50%)',
         flexDirection: 'column',
         alignItems: 'flex-end',
-        gap: 1.35,
-      }}
+        gap: theme.spacing(1.35),
+      })}
     >
       {props.items.map((item) => (
         <Link
@@ -31,13 +37,13 @@ export const FloatingSectionNav: FC<{
           title={item.label}
           aria-label={item.label}
           sx={(theme) => ({
-            width: 42,
-            height: 4,
-            borderRadius: 999,
+            inlineSize: theme.spacing(5.25),
+            blockSize: theme.spacing(0.5),
+            borderRadius: theme.shape.borderRadius,
             bgcolor: alpha(theme.palette.text.primary, 0.32),
-            transition: 'background-color 160ms ease, width 160ms ease',
+            transition: theme.transitions.create(['background-color', 'width']),
             '&:hover': {
-              width: 54,
+              inlineSize: theme.spacing(6.75),
               bgcolor: 'primary.main',
             },
           })}

@@ -1,29 +1,19 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-
 import { RouterLink } from './router-link'
+import type { ComponentProps, FC, ReactNode } from 'react'
 
-import type { FC, ReactNode } from 'react'
-
-export const InlineRouterLink: FC<{
-  to: '/portfolio'
-  children: ReactNode
-}> = (props) => {
+export const InlineRouterLink: FC<
+  Omit<ComponentProps<typeof RouterLink>, 'children'> & {
+    children: ReactNode
+  }
+> = (props) => {
   return (
     <RouterLink
-      to={props.to}
-      underline="always"
-      color="primary"
-      sx={{
-        display: 'inline-flex',
-        alignItems: 'baseline',
-        gap: 0.35,
-        fontWeight: 760,
-      }}
+      {...props}
+      underline={props.underline ?? 'always'}
+      color={props.color ?? 'primary'}
     >
-      {props.children}
-      <ArrowForwardIcon
-        sx={{ fontSize: '0.9em', transform: 'translateY(2px)' }}
-      />
+      {props.children} <ArrowForwardIcon fontSize="inherit" />
     </RouterLink>
   )
 }

@@ -6,8 +6,8 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { createFileRoute } from '@tanstack/react-router'
 
-import { SectionLabel } from '#/components/common/SectionLabel'
-import { FloatingSectionNav } from '#/components/navigation/FloatingSectionNav'
+import { SectionLabel } from '#/components/common/section-label'
+import { FloatingSectionNav } from '#/components/navigation/floating-section-nav'
 import type { FC, ReactNode } from 'react'
 
 export const Route = createFileRoute('/portfolio')({
@@ -26,8 +26,7 @@ const sectionNav = [
 const experience = [
   {
     title: 'Technical Team Leader',
-    organization:
-      'Google Developer Group on Campus, Eotvos Lorand University',
+    organization: 'Google Developer Group on Campus, Eotvos Lorand University',
     location: 'Budapest, Hungary',
     period: 'October 2024 - January 2026',
     bullets: [
@@ -189,69 +188,66 @@ const builtProjects = [
 
 function PortfolioRoute() {
   return (
-    <Box
-      component="main"
-      sx={{
-        minHeight: '100dvh',
-      }}
-    >
+    <Box component="main">
       <FloatingSectionNav items={sectionNav} label="Resume sections" />
 
       <Container
         maxWidth="md"
-        sx={{
-          px: { xs: 2.5, sm: 4 },
-          py: { xs: 9, md: 12 },
-        }}
+        sx={(theme) => ({
+          px: {
+            xs: theme.spacing(2.5),
+            sm: theme.spacing(4),
+          },
+          py: {
+            xs: theme.spacing(9),
+            md: theme.spacing(12),
+          },
+        })}
       >
-        <Stack spacing={{ xs: 5, md: 6 }}>
+        <Stack
+          sx={(theme) => ({
+            gap: {
+              xs: theme.spacing(5),
+              md: theme.spacing(6),
+            },
+          })}
+        >
           <ResumeSection id="overview">
-            <Typography
-              component="p"
-              color="primary"
-              sx={{
-                fontSize: 12,
-                fontWeight: 700,
-                letterSpacing: 0,
-                textTransform: 'uppercase',
-              }}
-            >
+            <Typography variant="overline" component="p" color="primary">
               Online resume
             </Typography>
 
-            <Typography
-              variant="h1"
-              color="text.primary"
-              sx={{
-                mt: 1.5,
-                fontSize: { xs: 38, sm: 52 },
-                fontWeight: 760,
-                letterSpacing: 0,
-                lineHeight: 1,
-              }}
-            >
+            <Typography variant="h1" component="h1" color="text.primary">
               Thanakorn Phuttharaksa
             </Typography>
 
             <Stack
               direction={{ xs: 'column', sm: 'row' }}
-              spacing={{ xs: 0.75, sm: 2 }}
               color="text.secondary"
-              sx={{
-                mt: 2.5,
-                fontSize: 14,
-              }}
+              sx={(theme) => ({
+                gap: {
+                  xs: theme.spacing(0.75),
+                  sm: theme.spacing(2),
+                },
+              })}
             >
-              <Link href="mailto:tphuttharaksabusiness@gmail.com">
+              <Link
+                href="mailto:tphuttharaksabusiness@gmail.com"
+                variant="body2"
+              >
                 tphuttharaksabusiness@gmail.com
               </Link>
-              <Typography sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Box
+                component="span"
+                sx={() => ({ display: { xs: 'none', sm: 'block' } })}
+              >
                 /
-              </Typography>
+              </Box>
               <Link
                 href="https://github.com/Eurydia"
                 target="_blank"
                 rel="noreferrer"
+                variant="body2"
               >
                 github.com/Eurydia
               </Link>
@@ -272,11 +268,7 @@ function PortfolioRoute() {
           </ResumeSection>
 
           <ResumeSection id="english" title="English proficiency">
-            <Stack
-              divider={
-                <Divider />
-              }
-            >
+            <Stack divider={<Divider />}>
               <ScoreRow
                 title="IELTS Academic"
                 period="December 2020"
@@ -293,11 +285,7 @@ function PortfolioRoute() {
           </ResumeSection>
 
           <ResumeSection id="experience" title="Experience">
-            <Stack
-              divider={
-                <Divider />
-              }
-            >
+            <Stack divider={<Divider />}>
               {experience.map((entry) => (
                 <ResumeEntry key={entry.title} {...entry} />
               ))}
@@ -305,23 +293,18 @@ function PortfolioRoute() {
           </ResumeSection>
 
           <ResumeSection id="maintained-projects" title="Projects I maintain">
-            <Stack
-              divider={
-                <Divider />
-              }
-            >
+            <Stack divider={<Divider />}>
               {maintainedProjects.map((entry) => (
                 <ProjectEntry key={entry.title} {...entry} />
               ))}
             </Stack>
           </ResumeSection>
 
-          <ResumeSection id="built-projects" title="Other projects I have built">
-            <Stack
-              divider={
-                <Divider />
-              }
-            >
+          <ResumeSection
+            id="built-projects"
+            title="Other projects I have built"
+          >
+            <Stack divider={<Divider />}>
               {builtProjects.map((entry) => (
                 <ProjectEntry key={entry.title} {...entry} />
               ))}
@@ -342,23 +325,18 @@ const ResumeSection: FC<{
     <Box
       id={props.id}
       component="section"
-      sx={{
-        scrollMarginTop: 88,
-        py: props.title ? { xs: 0.5, md: 1 } : 0,
-      }}
+      sx={(theme) => ({
+        scrollMarginTop: theme.spacing(11),
+        py: props.title
+          ? {
+              xs: theme.spacing(0.5),
+              md: theme.spacing(1),
+            }
+          : 0,
+      })}
     >
       {props.title ? (
-        <Typography
-          component="h2"
-          color="text.primary"
-          sx={{
-            mb: 2.25,
-            fontSize: { xs: 24, sm: 28 },
-            fontWeight: 750,
-            letterSpacing: 0,
-            lineHeight: 1.12,
-          }}
-        >
+        <Typography variant="h2" component="h2" color="text.primary">
           {props.title}
         </Typography>
       ) : null}
@@ -378,52 +356,31 @@ const ResumeEntry: FC<{
   children?: ReactNode
 }> = (props) => {
   return (
-    <Box sx={{ py: 2.25 }}>
+    <Box sx={(theme) => ({ py: theme.spacing(2.25) })}>
       <Box
-        sx={{
+        sx={(theme) => ({
           display: 'grid',
-          gap: { xs: 1.25, sm: 3 },
-          gridTemplateColumns: { xs: '1fr', sm: '190px 1fr' },
-        }}
+          gap: {
+            xs: theme.spacing(1.25),
+            sm: theme.spacing(3),
+          },
+          gridTemplateColumns: {
+            xs: '1fr',
+            sm: `${theme.spacing(23.75)} 1fr`,
+          },
+        })}
       >
         <Box>
-          <Typography
-            component="h3"
-            color="text.primary"
-            sx={{
-              fontSize: 18,
-              fontWeight: 740,
-              letterSpacing: 0,
-              lineHeight: 1.25,
-            }}
-          >
+          <Typography variant="h3" component="h3" color="text.primary">
             {props.title}
           </Typography>
-          <Typography
-            color="primary"
-            sx={{
-              mt: 0.5,
-              fontSize: 12,
-              fontWeight: 700,
-              letterSpacing: 0,
-              textTransform: 'uppercase',
-            }}
-          >
-            {props.period}
-          </Typography>
+          <SectionLabel>{props.period}</SectionLabel>
         </Box>
 
         <Box>
           <BodyText>{props.subtitle ?? props.organization}</BodyText>
           {props.location ? (
-            <Typography
-              color="text.secondary"
-              sx={{
-                mt: 0.25,
-                fontSize: 13,
-                lineHeight: 1.6,
-              }}
-            >
+            <Typography variant="body2" color="text.secondary">
               {props.location}
             </Typography>
           ) : null}
@@ -451,19 +408,10 @@ const ProjectEntry: FC<{
       period={props.period}
       bullets={props.bullets}
     >
-      <Typography
-        color="text.secondary"
-        sx={{
-          mt: 1.25,
-          fontSize: 13,
-          lineHeight: 1.6,
-        }}
-      >
+      <Typography variant="body2" component="p" color="text.secondary">
         {props.tools}
       </Typography>
-      {props.postmortems ? (
-        <PostmortemLinks items={props.postmortems} />
-      ) : null}
+      {props.postmortems ? <PostmortemLinks items={props.postmortems} /> : null}
     </ResumeEntry>
   )
 }
@@ -478,11 +426,11 @@ const PostmortemLinks: FC<{ items: readonly PostmortemLink[] }> = (props) => {
     <Stack
       direction="row"
       useFlexGap
-      sx={{
+      sx={(theme) => ({
         flexWrap: 'wrap',
-        mt: 2,
-        gap: 1.5,
-      }}
+        mt: theme.spacing(2),
+        gap: theme.spacing(1.5),
+      })}
     >
       {props.items.map((item) => (
         <Link
@@ -490,10 +438,7 @@ const PostmortemLinks: FC<{ items: readonly PostmortemLink[] }> = (props) => {
           href={item.href}
           underline="always"
           color="primary"
-          sx={{
-            fontSize: 13,
-            fontWeight: 700,
-          }}
+          variant="subtitle2"
         >
           {item.title}
         </Link>
@@ -510,38 +455,28 @@ const ScoreRow: FC<{
 }> = (props) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         display: 'grid',
-        gap: { xs: 0.75, sm: 3 },
-        gridTemplateColumns: { xs: '1fr', sm: '190px 1fr' },
-        py: 2,
-      }}
+        gap: {
+          xs: theme.spacing(0.75),
+          sm: theme.spacing(3),
+        },
+        gridTemplateColumns: {
+          xs: '1fr',
+          sm: `${theme.spacing(23.75)} 1fr`,
+        },
+        py: theme.spacing(2),
+      })}
     >
       <Box>
-        <Typography
-          component="h3"
-          color="text.primary"
-          sx={{
-            fontSize: 18,
-            fontWeight: 740,
-            letterSpacing: 0,
-            lineHeight: 1.25,
-          }}
-        >
+        <Typography variant="h3" component="h3" color="text.primary">
           {props.title}
         </Typography>
         <SectionLabel>{props.period}</SectionLabel>
       </Box>
       <Box>
         <BodyText>{props.summary}</BodyText>
-        <Typography
-          color="text.secondary"
-          sx={{
-            mt: 0.5,
-            fontSize: 13,
-            lineHeight: 1.6,
-          }}
-        >
+        <Typography variant="body2" color="text.secondary">
           {props.details}
         </Typography>
       </Box>
@@ -551,44 +486,35 @@ const ScoreRow: FC<{
 
 const BulletList: FC<{ items: readonly string[] }> = (props) => {
   return (
-    <Stack
+    <Box
       component="ul"
-      spacing={0.75}
-      sx={{
+      sx={(theme) => ({
         m: 0,
-        mt: 1.25,
-        pl: 2.25,
-      }}
+        mt: theme.spacing(1.25),
+        pl: theme.spacing(2.25),
+      })}
     >
       {props.items.map((item) => (
         <Typography
           key={item}
           component="li"
+          variant="body2"
           color="text.primary"
-          sx={{
-            fontSize: 14,
-            lineHeight: 1.65,
-            pl: 0.25,
-          }}
+          sx={(theme) => ({
+            pl: theme.spacing(0.25),
+          })}
         >
           {item}
         </Typography>
       ))}
-    </Stack>
+    </Box>
   )
 }
 
 const BodyText: FC<{ children: ReactNode }> = (props) => {
   return (
-    <Typography
-      color="text.primary"
-      sx={{
-        fontSize: 14,
-        lineHeight: 1.65,
-      }}
-    >
+    <Typography variant="body2" color="text.primary">
       {props.children}
     </Typography>
   )
 }
-

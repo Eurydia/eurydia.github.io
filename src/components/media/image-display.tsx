@@ -1,10 +1,11 @@
 import Box from '@mui/material/Box'
-import { alpha, useTheme } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles'
 
 import type { FC } from 'react'
 
 export const ImageDisplay: FC<{
   label: string
+  src?: string
   width?: number
   height?: number
 }> = (props) => {
@@ -13,23 +14,23 @@ export const ImageDisplay: FC<{
   const imageHeight = props.height ?? 260
   const backgroundColor = theme.palette.background.paper.replace('#', '')
   const foregroundColor = theme.palette.primary.main.replace('#', '')
-  const src = `https://placehold.co/${imageWidth}x${imageHeight}/${backgroundColor}/${foregroundColor}?text=${encodeURIComponent(props.label)}`
+  const fallbackSrc = `https://placehold.co/${imageWidth}x${imageHeight}/${backgroundColor}/${foregroundColor}?text=${encodeURIComponent(props.label)}`
 
   return (
     <Box
       component="img"
-      src={src}
-      alt={`Image for ${props.label}`}
+      src={props.src ?? fallbackSrc}
+      alt={props.label}
       loading="lazy"
-      sx={(muiTheme) => ({
+      sx={(theme) => ({
         display: 'block',
-        width: '100%',
+        inlineSize: '100%',
         aspectRatio: `${imageWidth} / ${imageHeight}`,
         objectFit: 'cover',
-        border: `1px solid ${muiTheme.palette.divider}`,
-        borderRadius: 1,
-        bgcolor: muiTheme.palette.background.paper,
-        boxShadow: `0 18px 48px ${alpha(muiTheme.palette.primary.main, 0.14)}`,
+        border: 1,
+        borderColor: 'divider',
+        borderRadius: theme.shape.borderRadius,
+        bgcolor: 'background.paper',
       })}
     />
   )

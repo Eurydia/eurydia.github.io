@@ -18,50 +18,55 @@ export const AppFooter: FC = () => {
     >
       <Container
         maxWidth="lg"
-        sx={{
-          px: { xs: 2.5, sm: 4 },
-          py: { xs: 4, md: 5 },
-        }}
+        sx={(theme) => ({
+          px: {
+            xs: theme.spacing(2.5),
+            sm: theme.spacing(4),
+          },
+          py: {
+            xs: theme.spacing(4),
+            md: theme.spacing(5),
+          },
+        })}
       >
-        <Stack spacing={3}>
+        <Stack
+          sx={(theme) => ({
+            gap: theme.spacing(3),
+          })}
+        >
           <Stack
-            direction={{ xs: 'column', md: 'row' }}
-            spacing={{ xs: 2.5, md: 4 }}
-            sx={{
-              alignItems: { xs: 'flex-start', md: 'flex-end' },
-              justifyContent: 'space-between',
+            direction={{
+              xs: 'column',
+              md: 'row',
             }}
+            sx={(theme) => ({
+              alignItems: {
+                xs: 'flex-start',
+                md: 'flex-end',
+              },
+              justifyContent: 'space-between',
+              gap: {
+                xs: theme.spacing(2.5),
+                md: theme.spacing(4),
+              },
+            })}
           >
-            <Box sx={{ maxWidth: 460 }}>
-              <Typography
-                component="p"
-                color="primary"
-                sx={{
-                  fontSize: 12,
-                  fontWeight: 760,
-                  letterSpacing: 0,
-                  textTransform: 'uppercase',
-                }}
-              >
+            <Box>
+              <Typography variant="overline" component="p" color="primary">
                 Thanakorn Phuttharaksa
               </Typography>
-              <Typography
-                color="text.secondary"
-                sx={{
-                  mt: 0.75,
-                  fontSize: 15,
-                  lineHeight: 1.65,
-                }}
-              >
+              <Typography variant="body2" color="text.secondary">
                 Portfolio and project notes.
               </Typography>
             </Box>
 
             <Stack
               direction="row"
-              spacing={2}
               useFlexGap
-              sx={{ flexWrap: 'wrap' }}
+              sx={(theme) => ({
+                flexWrap: 'wrap',
+                gap: theme.spacing(2),
+              })}
             >
               <FooterLink href="mailto:tphuttharaksabusiness@gmail.com">
                 Email
@@ -79,15 +84,10 @@ export const AppFooter: FC = () => {
           <Box
             sx={(theme) => ({
               borderTop: `1px solid ${theme.palette.divider}`,
-              pt: 2,
+              pt: theme.spacing(2),
             })}
           >
-            <Typography
-              color="text.secondary"
-              sx={{
-                fontSize: 13,
-              }}
-            >
+            <Typography variant="caption" color="text.secondary">
               {`© ${new Date().getFullYear()} Thanakorn Phuttharaksa`}
             </Typography>
           </Box>
@@ -110,10 +110,7 @@ const FooterLink: FC<{
       rel={props.rel}
       underline="always"
       color="text.primary"
-      sx={{
-        fontSize: 14,
-        fontWeight: 700,
-      }}
+      variant="subtitle2"
     >
       {props.children}
     </Link>
