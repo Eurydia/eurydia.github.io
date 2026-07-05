@@ -32,11 +32,11 @@ export const PageSection: FC<{
           {props.title}
         </Typography>
         <Typography
-          sx={(theme) => ({
-            color: theme.palette.text.secondary,
+          color="text.secondary"
+          sx={{
             fontSize: 16,
             lineHeight: 1.7,
-          })}
+          }}
         >
           {props.body}
         </Typography>

@@ -13,8 +13,8 @@ import type { HomeExperienceItem } from '#/types/home'
 
 export const ExperienceList: FC<{
   items: readonly HomeExperienceItem[]
-  initialVisibleItems?: number
-  visibleItemIncrement?: number
+  initialVisibleItems: number
+  visibleItemIncrement: number
 }> = (props) => {
   const { hiddenCount, nextVisibleCount, showMore, visibleItems } =
     useVisibleItems(props.items, {
@@ -25,9 +25,7 @@ export const ExperienceList: FC<{
   return (
     <Stack spacing={2.5}>
       <Stack
-        divider={
-          <Divider sx={(theme) => ({ borderColor: theme.palette.divider })} />
-        }
+        divider={<Divider />}
       >
         {visibleItems.map((item) => (
           <Box key={item.title} sx={{ maxWidth: 1080, py: 2.75 }}>
@@ -56,11 +54,11 @@ export const ExperienceList: FC<{
                 </Box>
 
                 <Typography
-                  sx={(theme) => ({
-                    color: theme.palette.text.primary,
+                  color="text.primary"
+                  sx={{
                     fontSize: 15,
                     lineHeight: 1.65,
-                  })}
+                  }}
                 >
                   {item.organization}
                 </Typography>
@@ -68,14 +66,14 @@ export const ExperienceList: FC<{
                 <Stack component="ul" spacing={0.75} sx={{ m: 0, pl: 2 }}>
                   {item.details.map((detail) => (
                     <Typography
-                      key={detail}
-                      component="li"
-                      sx={(theme) => ({
-                        color: theme.palette.text.secondary,
-                        fontSize: 14,
-                        lineHeight: 1.65,
-                      })}
-                    >
+                    key={detail}
+                    component="li"
+                    color="text.secondary"
+                    sx={{
+                      fontSize: 14,
+                      lineHeight: 1.65,
+                    }}
+                  >
                       {detail}
                     </Typography>
                   ))}

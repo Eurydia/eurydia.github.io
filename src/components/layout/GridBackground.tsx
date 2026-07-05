@@ -6,9 +6,9 @@ import type { FC, ReactNode } from 'react'
 export const GridBackground: FC<{ children: ReactNode }> = (props) => {
   return (
     <Box
+      color="text.primary"
       sx={(theme) => ({
         minHeight: '100dvh',
-        color: theme.palette.text.primary,
         bgcolor: theme.palette.background.default,
         backgroundImage: [
           `linear-gradient(${alpha(theme.palette.primary.main, 0.08)} 1px, ${alpha(theme.palette.primary.main, 0)} 1px)`,

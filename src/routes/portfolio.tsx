@@ -208,27 +208,27 @@ function PortfolioRoute() {
           <ResumeSection id="overview">
             <Typography
               component="p"
-              sx={(theme) => ({
-                color: theme.palette.primary.main,
+              color="primary"
+              sx={{
                 fontSize: 12,
                 fontWeight: 700,
                 letterSpacing: 0,
                 textTransform: 'uppercase',
-              })}
+              }}
             >
               Online resume
             </Typography>
 
             <Typography
               variant="h1"
-              sx={(theme) => ({
+              color="text.primary"
+              sx={{
                 mt: 1.5,
-                color: theme.palette.text.primary,
                 fontSize: { xs: 38, sm: 52 },
                 fontWeight: 760,
                 letterSpacing: 0,
                 lineHeight: 1,
-              })}
+              }}
             >
               Thanakorn Phuttharaksa
             </Typography>
@@ -236,11 +236,11 @@ function PortfolioRoute() {
             <Stack
               direction={{ xs: 'column', sm: 'row' }}
               spacing={{ xs: 0.75, sm: 2 }}
-              sx={(theme) => ({
+              color="text.secondary"
+              sx={{
                 mt: 2.5,
-                color: theme.palette.text.secondary,
                 fontSize: 14,
-              })}
+              }}
             >
               <Link href="mailto:tphuttharaksabusiness@gmail.com">
                 tphuttharaksabusiness@gmail.com
@@ -274,7 +274,7 @@ function PortfolioRoute() {
           <ResumeSection id="english" title="English proficiency">
             <Stack
               divider={
-                <Divider sx={(theme) => ({ borderColor: theme.palette.divider })} />
+                <Divider />
               }
             >
               <ScoreRow
@@ -295,7 +295,7 @@ function PortfolioRoute() {
           <ResumeSection id="experience" title="Experience">
             <Stack
               divider={
-                <Divider sx={(theme) => ({ borderColor: theme.palette.divider })} />
+                <Divider />
               }
             >
               {experience.map((entry) => (
@@ -307,7 +307,7 @@ function PortfolioRoute() {
           <ResumeSection id="maintained-projects" title="Projects I maintain">
             <Stack
               divider={
-                <Divider sx={(theme) => ({ borderColor: theme.palette.divider })} />
+                <Divider />
               }
             >
               {maintainedProjects.map((entry) => (
@@ -319,7 +319,7 @@ function PortfolioRoute() {
           <ResumeSection id="built-projects" title="Other projects I have built">
             <Stack
               divider={
-                <Divider sx={(theme) => ({ borderColor: theme.palette.divider })} />
+                <Divider />
               }
             >
               {builtProjects.map((entry) => (
@@ -350,14 +350,14 @@ const ResumeSection: FC<{
       {props.title ? (
         <Typography
           component="h2"
-          sx={(theme) => ({
+          color="text.primary"
+          sx={{
             mb: 2.25,
-            color: theme.palette.text.primary,
             fontSize: { xs: 24, sm: 28 },
             fontWeight: 750,
             letterSpacing: 0,
             lineHeight: 1.12,
-          })}
+          }}
         >
           {props.title}
         </Typography>
@@ -389,25 +389,25 @@ const ResumeEntry: FC<{
         <Box>
           <Typography
             component="h3"
-            sx={(theme) => ({
-              color: theme.palette.text.primary,
+            color="text.primary"
+            sx={{
               fontSize: 18,
               fontWeight: 740,
               letterSpacing: 0,
               lineHeight: 1.25,
-            })}
+            }}
           >
             {props.title}
           </Typography>
           <Typography
-            sx={(theme) => ({
+            color="primary"
+            sx={{
               mt: 0.5,
-              color: theme.palette.primary.main,
               fontSize: 12,
               fontWeight: 700,
               letterSpacing: 0,
               textTransform: 'uppercase',
-            })}
+            }}
           >
             {props.period}
           </Typography>
@@ -417,12 +417,12 @@ const ResumeEntry: FC<{
           <BodyText>{props.subtitle ?? props.organization}</BodyText>
           {props.location ? (
             <Typography
-              sx={(theme) => ({
+              color="text.secondary"
+              sx={{
                 mt: 0.25,
-                color: theme.palette.text.secondary,
                 fontSize: 13,
                 lineHeight: 1.6,
-              })}
+              }}
             >
               {props.location}
             </Typography>
@@ -452,12 +452,12 @@ const ProjectEntry: FC<{
       bullets={props.bullets}
     >
       <Typography
-        sx={(theme) => ({
+        color="text.secondary"
+        sx={{
           mt: 1.25,
-          color: theme.palette.text.secondary,
           fontSize: 13,
           lineHeight: 1.6,
-        })}
+        }}
       >
         {props.tools}
       </Typography>
@@ -478,8 +478,8 @@ const PostmortemLinks: FC<{ items: readonly PostmortemLink[] }> = (props) => {
     <Stack
       direction="row"
       useFlexGap
-      flexWrap="wrap"
       sx={{
+        flexWrap: 'wrap',
         mt: 2,
         gap: 1.5,
       }}
@@ -489,11 +489,11 @@ const PostmortemLinks: FC<{ items: readonly PostmortemLink[] }> = (props) => {
           key={item.href}
           href={item.href}
           underline="always"
-          sx={(theme) => ({
-            color: theme.palette.primary.main,
+          color="primary"
+          sx={{
             fontSize: 13,
             fontWeight: 700,
-          })}
+          }}
         >
           {item.title}
         </Link>
@@ -520,13 +520,13 @@ const ScoreRow: FC<{
       <Box>
         <Typography
           component="h3"
-          sx={(theme) => ({
-            color: theme.palette.text.primary,
+          color="text.primary"
+          sx={{
             fontSize: 18,
             fontWeight: 740,
             letterSpacing: 0,
             lineHeight: 1.25,
-          })}
+          }}
         >
           {props.title}
         </Typography>
@@ -535,12 +535,12 @@ const ScoreRow: FC<{
       <Box>
         <BodyText>{props.summary}</BodyText>
         <Typography
-          sx={(theme) => ({
+          color="text.secondary"
+          sx={{
             mt: 0.5,
-            color: theme.palette.text.secondary,
             fontSize: 13,
             lineHeight: 1.6,
-          })}
+          }}
         >
           {props.details}
         </Typography>
@@ -564,12 +564,12 @@ const BulletList: FC<{ items: readonly string[] }> = (props) => {
         <Typography
           key={item}
           component="li"
-          sx={(theme) => ({
-            color: theme.palette.text.primary,
+          color="text.primary"
+          sx={{
             fontSize: 14,
             lineHeight: 1.65,
             pl: 0.25,
-          })}
+          }}
         >
           {item}
         </Typography>
@@ -581,11 +581,11 @@ const BulletList: FC<{ items: readonly string[] }> = (props) => {
 const BodyText: FC<{ children: ReactNode }> = (props) => {
   return (
     <Typography
-      sx={(theme) => ({
-        color: theme.palette.text.primary,
+      color="text.primary"
+      sx={{
         fontSize: 14,
         lineHeight: 1.65,
-      })}
+      }}
     >
       {props.children}
     </Typography>

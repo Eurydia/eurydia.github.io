@@ -12,13 +12,13 @@ export const InlineRouterLink: FC<{
     <RouterLink
       to={props.to}
       underline="always"
-      sx={(theme) => ({
+      color="primary"
+      sx={{
         display: 'inline-flex',
         alignItems: 'baseline',
         gap: 0.35,
-        color: theme.palette.primary.main,
         fontWeight: 760,
-      })}
+      }}
     >
       {props.children}
       <ArrowForwardIcon

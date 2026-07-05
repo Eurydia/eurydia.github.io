@@ -20,6 +20,16 @@ const sectionNav = [
   { id: 'education', label: 'Education' },
 ] as const
 
+const listDisplayOptions = {
+  initialVisibleItems: 2,
+  visibleItemIncrement: 5,
+} as const
+
+const educationDisplayOptions = {
+  ...listDisplayOptions,
+  initialVisibleItems: 3,
+} as const
+
 const maintainedProjects = [
   {
     title: 'SUT Mechanical Engineering Web Platform',
@@ -197,13 +207,13 @@ function HomeRoute() {
             <Stack spacing={2}>
               <Typography
                 component="p"
-                sx={(theme) => ({
-                  color: theme.palette.primary.main,
+                color="primary"
+                sx={{
                   fontSize: 12,
                   fontWeight: 760,
                   letterSpacing: 0,
                   textTransform: 'uppercase',
-                })}
+                }}
               >
                 Eurydia
               </Typography>
@@ -224,12 +234,12 @@ function HomeRoute() {
 
             <Stack
               spacing={1.5}
-              sx={(theme) => ({
+              color="text.secondary"
+              sx={{
                 maxWidth: 780,
-                color: theme.palette.text.secondary,
                 fontSize: { xs: 18, md: 20 },
                 lineHeight: 1.7,
-              })}
+              }}
             >
               <Typography sx={{ font: 'inherit' }}>
                 If you were invited here and you are in a hurry, start with the{' '}
@@ -253,7 +263,7 @@ function HomeRoute() {
             title="Projects I maintain"
             body="These are systems I built and still treat as ongoing responsibility. The compact page gives the short version; this page gives them enough room to be read properly."
           >
-            <EntryList items={maintainedProjects} />
+            <EntryList items={maintainedProjects} {...listDisplayOptions} />
           </PageSection>
 
           <PageSection
@@ -261,7 +271,7 @@ function HomeRoute() {
             title="Other projects I have built"
             body="Finished work that should be read as work, not as a stack inventory. Each project links to a postmortem page where the repository, screenshots, and extra details can live."
           >
-            <EntryList items={builtProjects} />
+            <EntryList items={builtProjects} {...listDisplayOptions} />
           </PageSection>
 
           <PageSection
@@ -269,7 +279,7 @@ function HomeRoute() {
             title="Research and notes"
             body="Research-adjacent work belongs outside the normal project list because the interesting part is often method, constraint, or presentation rather than deployment."
           >
-            <EntryList items={researchItems} />
+            <EntryList items={researchItems} {...listDisplayOptions} />
           </PageSection>
 
           <PageSection
@@ -277,7 +287,7 @@ function HomeRoute() {
             title="Experience"
             body="Roles where the work was not only code: delivery, teaching, review, coordination, and explaining things to other people."
           >
-            <ExperienceList items={experienceItems} />
+            <ExperienceList items={experienceItems} {...listDisplayOptions} />
           </PageSection>
 
           <PageSection
@@ -285,7 +295,7 @@ function HomeRoute() {
             title="Education and certifications"
             body="Degree, scholarship, and language qualifications. Useful context, kept separate from the project sections."
           >
-            <SimpleRows items={educationItems} initialVisibleItems={3} />
+            <SimpleRows items={educationItems} {...educationDisplayOptions} />
           </PageSection>
         </Stack>
       </Container>

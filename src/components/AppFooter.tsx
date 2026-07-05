@@ -10,10 +10,10 @@ export const AppFooter: FC = () => {
   return (
     <Box
       component="footer"
+      color="text.primary"
       sx={(theme) => ({
         bgcolor: alpha(theme.palette.primary.main, 0.06),
         borderTop: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
-        color: theme.palette.text.primary,
       })}
     >
       <Container
@@ -27,35 +27,42 @@ export const AppFooter: FC = () => {
           <Stack
             direction={{ xs: 'column', md: 'row' }}
             spacing={{ xs: 2.5, md: 4 }}
-            justifyContent="space-between"
-            alignItems={{ xs: 'flex-start', md: 'flex-end' }}
+            sx={{
+              alignItems: { xs: 'flex-start', md: 'flex-end' },
+              justifyContent: 'space-between',
+            }}
           >
             <Box sx={{ maxWidth: 460 }}>
               <Typography
                 component="p"
-                sx={(theme) => ({
-                  color: theme.palette.primary.main,
+                color="primary"
+                sx={{
                   fontSize: 12,
                   fontWeight: 760,
                   letterSpacing: 0,
                   textTransform: 'uppercase',
-                })}
+                }}
               >
                 Thanakorn Phuttharaksa
               </Typography>
               <Typography
-                sx={(theme) => ({
+                color="text.secondary"
+                sx={{
                   mt: 0.75,
-                  color: theme.palette.text.secondary,
                   fontSize: 15,
                   lineHeight: 1.65,
-                })}
+                }}
               >
                 Portfolio and project notes.
               </Typography>
             </Box>
 
-            <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap">
+            <Stack
+              direction="row"
+              spacing={2}
+              useFlexGap
+              sx={{ flexWrap: 'wrap' }}
+            >
               <FooterLink href="mailto:tphuttharaksabusiness@gmail.com">
                 Email
               </FooterLink>
@@ -76,10 +83,10 @@ export const AppFooter: FC = () => {
             })}
           >
             <Typography
-              sx={(theme) => ({
-                color: theme.palette.text.secondary,
+              color="text.secondary"
+              sx={{
                 fontSize: 13,
-              })}
+              }}
             >
               {`© ${new Date().getFullYear()} Thanakorn Phuttharaksa`}
             </Typography>
@@ -102,11 +109,11 @@ const FooterLink: FC<{
       target={props.target}
       rel={props.rel}
       underline="always"
-      sx={(theme) => ({
-        color: theme.palette.text.primary,
+      color="text.primary"
+      sx={{
         fontSize: 14,
         fontWeight: 700,
-      })}
+      }}
     >
       {props.children}
     </Link>

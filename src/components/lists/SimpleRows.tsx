@@ -12,8 +12,8 @@ import type { SimpleRowItem } from '#/types/content'
 
 export const SimpleRows: FC<{
   items: readonly SimpleRowItem[]
-  initialVisibleItems?: number
-  visibleItemIncrement?: number
+  initialVisibleItems: number
+  visibleItemIncrement: number
 }> = (props) => {
   const { hiddenCount, nextVisibleCount, showMore, visibleItems } =
     useVisibleItems(props.items, {
@@ -24,9 +24,7 @@ export const SimpleRows: FC<{
   return (
     <Stack spacing={2.5}>
       <Stack
-        divider={
-          <Divider sx={(theme) => ({ borderColor: theme.palette.divider })} />
-        }
+        divider={<Divider />}
       >
         {visibleItems.map((item) => (
           <Box key={item.title} sx={{ maxWidth: 980, py: 2.5 }}>
@@ -46,11 +44,11 @@ export const SimpleRows: FC<{
                   {item.title}
                 </Typography>
                 <Typography
-                  sx={(theme) => ({
-                    color: theme.palette.text.secondary,
+                  color="text.secondary"
+                  sx={{
                     fontSize: 15,
                     lineHeight: 1.65,
-                  })}
+                  }}
                 >
                   {item.body}
                 </Typography>

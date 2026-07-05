@@ -38,7 +38,7 @@ export const FloatingSectionNav: FC<{
             transition: 'background-color 160ms ease, width 160ms ease',
             '&:hover': {
               width: 54,
-              bgcolor: theme.palette.primary.main,
+              bgcolor: 'primary.main',
             },
           })}
         />

@@ -14,8 +14,8 @@ import type { HomeEntryItem } from '#/types/home'
 
 export const EntryList: FC<{
   items: readonly HomeEntryItem[]
-  initialVisibleItems?: number
-  visibleItemIncrement?: number
+  initialVisibleItems: number
+  visibleItemIncrement: number
 }> = (props) => {
   const { hiddenCount, nextVisibleCount, showMore, visibleItems } =
     useVisibleItems(props.items, {
@@ -26,9 +26,7 @@ export const EntryList: FC<{
   return (
     <Stack spacing={2.5}>
       <Stack
-        divider={
-          <Divider sx={(theme) => ({ borderColor: theme.palette.divider })} />
-        }
+        divider={<Divider />}
       >
         {visibleItems.map((item) => (
           <Box
@@ -63,11 +61,11 @@ export const EntryList: FC<{
                 </Box>
 
                 <Typography
-                  sx={(theme) => ({
-                    color: theme.palette.text.primary,
+                  color="text.primary"
+                  sx={{
                     fontSize: 16,
                     lineHeight: 1.7,
-                  })}
+                  }}
                 >
                   {item.intro}
                 </Typography>
@@ -75,40 +73,40 @@ export const EntryList: FC<{
                 <Stack component="ul" spacing={0.8} sx={{ m: 0, pl: 2.25 }}>
                   {item.notes.map((note) => (
                     <Typography
-                      key={note}
-                      component="li"
-                      sx={(theme) => ({
-                        color: theme.palette.text.secondary,
-                        fontSize: 15,
-                        lineHeight: 1.65,
-                        pl: 0.25,
-                      })}
-                    >
+                    key={note}
+                    component="li"
+                    color="text.secondary"
+                    sx={{
+                      fontSize: 15,
+                      lineHeight: 1.65,
+                      pl: 0.25,
+                    }}
+                  >
                       {note}
                     </Typography>
                   ))}
                 </Stack>
 
                 <Box>
-                  <Typography
-                    sx={(theme) => ({
-                      color: theme.palette.text.primary,
-                      fontSize: 13,
-                      fontWeight: 760,
-                      letterSpacing: 0,
-                      textTransform: 'uppercase',
-                    })}
-                  >
+                <Typography
+                  color="text.primary"
+                  sx={{
+                    fontSize: 13,
+                    fontWeight: 760,
+                    letterSpacing: 0,
+                    textTransform: 'uppercase',
+                  }}
+                >
                     Stack
                   </Typography>
-                  <Typography
-                    sx={(theme) => ({
-                      mt: 0.4,
-                      color: theme.palette.text.secondary,
-                      fontSize: 14,
-                      lineHeight: 1.6,
-                    })}
-                  >
+                <Typography
+                  color="text.secondary"
+                  sx={{
+                    mt: 0.4,
+                    fontSize: 14,
+                    lineHeight: 1.6,
+                  }}
+                >
                     {item.tools}
                   </Typography>
                 </Box>
@@ -116,12 +114,12 @@ export const EntryList: FC<{
                 <Link
                   href={item.postmortem}
                   underline="always"
-                  sx={(theme) => ({
-                    color: theme.palette.primary.main,
+                  color="primary"
+                  sx={{
                     fontSize: 14,
                     fontWeight: 760,
                     width: 'fit-content',
-                  })}
+                  }}
                 >
                   Read postmortem
                 </Link>

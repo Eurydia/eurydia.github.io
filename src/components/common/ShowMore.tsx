@@ -20,18 +20,18 @@ export const ShowMore: FC<{
         type="button"
         underline="always"
         onClick={props.onClick}
-        sx={(theme) => ({
+        color="primary"
+        sx={{
           display: 'inline-flex',
           alignItems: 'center',
           gap: 0.4,
           p: 0,
           border: 0,
-          color: theme.palette.primary.main,
           cursor: 'pointer',
           font: 'inherit',
           fontSize: 14,
           fontWeight: 760,
-        })}
+        }}
       >
         Show {props.nextVisibleCount} more
         <ExpandMoreIcon sx={{ fontSize: 18 }} />

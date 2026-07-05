@@ -7,9 +7,9 @@ import { ThemeProvider } from '@mui/material/styles'
 import { theme } from '../theme'
 import { AppFooter } from '#/components/AppFooter'
 import { GridBackground } from '#/components/layout/GridBackground'
-import type { FC, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
-const RootDocument: FC<{ children: ReactNode }> = (props) => {
+const RootDocument = (props: { children: ReactNode }) => {
   return (
     <html lang={'en'} suppressHydrationWarning>
       <head>
