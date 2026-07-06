@@ -16,10 +16,10 @@ export const ShowMore: FC<{
       type="button"
       variant="text"
       size="small"
+      color="primary"
       endIcon={<ExpandMoreIcon />}
       onClick={props.onClick}
       sx={(theme) => ({
-        color: theme.palette.primary.main,
         fontWeight: theme.typography.fontWeightBold,
       })}
     >

@@ -33,12 +33,7 @@ export const CredentialList: FC<{
             >
               <Grid size={{ xs: 12, md: 8 }} sx={{ minInlineSize: 0 }}>
                 <Typography variant="siteTitle">{item.title}</Typography>
-                <Typography
-                  variant="siteFine"
-                  sx={(theme) => ({
-                    color: theme.palette.text.secondary,
-                  })}
-                >
+                <Typography variant="siteFine" color="textSecondary">
                   {item.body}
                 </Typography>
               </Grid>

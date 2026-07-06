@@ -48,9 +48,7 @@ export const ExperienceList: FC<{
                       <Typography
                         key={detail}
                         variant="siteFine"
-                        sx={(theme) => ({
-                          color: theme.palette.text.secondary,
-                        })}
+                        color="textSecondary"
                       >
                         {detail}
                       </Typography>

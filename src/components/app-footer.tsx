@@ -47,20 +47,10 @@ export const AppFooter: FC = () => {
             }}
           >
             <Box>
-              <Typography
-                variant="siteMark"
-                sx={(theme) => ({
-                  color: theme.palette.primary.main,
-                })}
-              >
+              <Typography variant="siteMark" color="primary">
                 Thanakorn Phuttharaksa
               </Typography>
-              <Typography
-                variant="siteFine"
-                sx={(theme) => ({
-                  color: theme.palette.text.secondary,
-                })}
-              >
+              <Typography variant="siteFine" color="textSecondary">
                 Portfolio and project notes.
               </Typography>
             </Box>
@@ -92,12 +82,7 @@ export const AppFooter: FC = () => {
               pt: theme.spacing(2),
             })}
           >
-            <Typography
-              variant="siteSmall"
-              sx={(theme) => ({
-                color: theme.palette.text.secondary,
-              })}
-            >
+            <Typography variant="siteSmall" color="textSecondary">
               {`© ${new Date().getFullYear()} Thanakorn Phuttharaksa`}
             </Typography>
           </Box>
@@ -120,9 +105,7 @@ const FooterLink: FC<{
       rel={props.rel}
       underline="always"
       variant="siteLink"
-      sx={(theme) => ({
-        color: theme.palette.text.primary,
-      })}
+      color="textPrimary"
     >
       {props.children}
     </Link>

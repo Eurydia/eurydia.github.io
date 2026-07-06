@@ -184,12 +184,7 @@ function HomeRoute() {
         <Stack spacing={{ xs: 7, md: 9 }} useFlexGap>
           <Stack spacing={{ xs: 4, md: 5 }} useFlexGap>
             <Stack spacing={2} useFlexGap>
-              <Typography
-                variant="siteMark"
-                sx={(theme) => ({
-                  color: theme.palette.primary.main,
-                })}
-              >
+              <Typography variant="siteMark" color="primary">
                 Eurydia
               </Typography>
 
@@ -199,33 +194,18 @@ function HomeRoute() {
             </Stack>
 
             <Stack spacing={1.5} useFlexGap>
-              <Typography
-                variant="siteCopy"
-                sx={(theme) => ({
-                  color: theme.palette.text.secondary,
-                })}
-              >
+              <Typography variant="siteCopy" color="textSecondary">
                 If you were invited here and you are in a hurry, start with the{' '}
                 <InlineRouterLink to="/portfolio">
                   compact summary
                 </InlineRouterLink>{' '}
                 of my work.
               </Typography>
-              <Typography
-                variant="siteCopy"
-                sx={(theme) => ({
-                  color: theme.palette.text.secondary,
-                })}
-              >
+              <Typography variant="siteCopy" color="textSecondary">
                 If you were invited here and you are not in a hurry, look
                 around.
               </Typography>
-              <Typography
-                variant="siteCopy"
-                sx={(theme) => ({
-                  color: theme.palette.text.secondary,
-                })}
-              >
+              <Typography variant="siteCopy" color="textSecondary">
                 If you stumbled here, look around anyway.
               </Typography>
             </Stack>

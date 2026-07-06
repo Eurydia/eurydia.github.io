@@ -47,9 +47,7 @@ export const EntryList: FC<{
                       <Typography
                         key={note}
                         variant="siteFine"
-                        sx={(theme) => ({
-                          color: theme.palette.text.secondary,
-                        })}
+                        color="textSecondary"
                       >
                         {note}
                       </Typography>
@@ -58,12 +56,7 @@ export const EntryList: FC<{
 
                   <Box>
                     <Typography variant="siteMark">Stack</Typography>
-                    <Typography
-                      variant="siteFine"
-                      sx={(theme) => ({
-                        color: theme.palette.text.secondary,
-                      })}
-                    >
+                    <Typography variant="siteFine" color="textSecondary">
                       {item.tools}
                     </Typography>
                   </Box>
@@ -72,9 +65,7 @@ export const EntryList: FC<{
                     href={item.postmortem}
                     underline="always"
                     variant="siteLink"
-                    sx={(theme) => ({
-                      color: theme.palette.primary.main,
-                    })}
+                    color="primary"
                   >
                     Read postmortem
                   </Link>

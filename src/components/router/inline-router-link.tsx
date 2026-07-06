@@ -11,9 +11,7 @@ export const InlineRouterLink: FC<
     <RouterLink
       {...props}
       underline={props.underline ?? 'always'}
-      sx={(theme) => ({
-        color: theme.palette.primary.main,
-      })}
+      color="primary"
     >
       {props.children} <ArrowForwardIcon fontSize="inherit" />
     </RouterLink>

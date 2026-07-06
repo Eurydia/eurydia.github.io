@@ -12,12 +12,7 @@ export const PageSection: FC<{
     <Stack id={props.id} spacing={4} useFlexGap>
       <Stack spacing={1} useFlexGap>
         <Typography variant="siteSection">{props.title}</Typography>
-        <Typography
-          variant="siteCopy"
-          sx={(theme) => ({
-            color: theme.palette.text.secondary,
-          })}
-        >
+        <Typography variant="siteCopy" color="textSecondary">
           {props.body}
         </Typography>
       </Stack>
