@@ -36,23 +36,19 @@ export const EntryList: FC<{
               <Grid size={{ xs: 12, md: 8 }} sx={{ minInlineSize: 0 }}>
                 <Stack spacing={1.5} useFlexGap>
                   <Box>
-                    <Typography sx={(theme) => theme.typography.siteTitle}>
-                      {item.title}
-                    </Typography>
+                    <Typography variant="siteTitle">{item.title}</Typography>
                     <SectionLabel>{item.period}</SectionLabel>
                   </Box>
 
-                  <Typography sx={(theme) => theme.typography.siteCopy}>
-                    {item.intro}
-                  </Typography>
+                  <Typography variant="siteCopy">{item.intro}</Typography>
 
                   <Stack spacing={0.75} useFlexGap>
                     {item.notes.map((note) => (
                       <Typography
                         key={note}
+                        variant="siteFine"
                         sx={(theme) => ({
                           color: theme.palette.text.secondary,
-                          ...theme.typography.siteFine,
                         })}
                       >
                         {note}
@@ -61,13 +57,11 @@ export const EntryList: FC<{
                   </Stack>
 
                   <Box>
-                    <Typography sx={(theme) => theme.typography.siteMark}>
-                      Stack
-                    </Typography>
+                    <Typography variant="siteMark">Stack</Typography>
                     <Typography
+                      variant="siteFine"
                       sx={(theme) => ({
                         color: theme.palette.text.secondary,
-                        ...theme.typography.siteFine,
                       })}
                     >
                       {item.tools}
@@ -77,9 +71,9 @@ export const EntryList: FC<{
                   <Link
                     href={item.postmortem}
                     underline="always"
+                    variant="siteLink"
                     sx={(theme) => ({
                       color: theme.palette.primary.main,
-                      ...theme.typography.siteLink,
                     })}
                   >
                     Read postmortem

@@ -3,7 +3,6 @@ import type { CSSProperties } from 'react'
 
 declare module '@mui/material/styles' {
   interface TypographyVariants {
-    siteAction: CSSProperties
     siteCopy: CSSProperties
     siteDisplay: CSSProperties
     siteFine: CSSProperties
@@ -15,7 +14,6 @@ declare module '@mui/material/styles' {
   }
 
   interface TypographyVariantsOptions {
-    siteAction?: CSSProperties
     siteCopy?: CSSProperties
     siteDisplay?: CSSProperties
     siteFine?: CSSProperties
@@ -24,6 +22,19 @@ declare module '@mui/material/styles' {
     siteSection?: CSSProperties
     siteSmall?: CSSProperties
     siteTitle?: CSSProperties
+  }
+}
+
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    siteCopy: true
+    siteDisplay: true
+    siteFine: true
+    siteLink: true
+    siteMark: true
+    siteSection: true
+    siteSmall: true
+    siteTitle: true
   }
 }
 
@@ -70,9 +81,6 @@ export const theme = responsiveFontSizes(
       fontFamily:
         'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
       fontWeightBold: 760,
-      siteAction: {
-        fontWeight: 760,
-      },
       siteCopy: {
         letterSpacing: 0,
         lineHeight: 1.7,

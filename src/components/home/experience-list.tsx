@@ -35,13 +35,11 @@ export const ExperienceList: FC<{
               <Grid size={{ xs: 12, md: 8 }} sx={{ minInlineSize: 0 }}>
                 <Stack spacing={1.5} useFlexGap>
                   <Box>
-                    <Typography sx={(theme) => theme.typography.siteTitle}>
-                      {item.title}
-                    </Typography>
+                    <Typography variant="siteTitle">{item.title}</Typography>
                     <SectionLabel>{item.period}</SectionLabel>
                   </Box>
 
-                  <Typography sx={(theme) => theme.typography.siteCopy}>
+                  <Typography variant="siteCopy">
                     {item.organization}
                   </Typography>
 
@@ -49,9 +47,9 @@ export const ExperienceList: FC<{
                     {item.details.map((detail) => (
                       <Typography
                         key={detail}
+                        variant="siteFine"
                         sx={(theme) => ({
                           color: theme.palette.text.secondary,
-                          ...theme.typography.siteFine,
                         })}
                       >
                         {detail}

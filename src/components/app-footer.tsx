@@ -48,17 +48,17 @@ export const AppFooter: FC = () => {
           >
             <Box>
               <Typography
+                variant="siteMark"
                 sx={(theme) => ({
                   color: theme.palette.primary.main,
-                  ...theme.typography.siteMark,
                 })}
               >
                 Thanakorn Phuttharaksa
               </Typography>
               <Typography
+                variant="siteFine"
                 sx={(theme) => ({
                   color: theme.palette.text.secondary,
-                  ...theme.typography.siteFine,
                 })}
               >
                 Portfolio and project notes.
@@ -93,9 +93,9 @@ export const AppFooter: FC = () => {
             })}
           >
             <Typography
+              variant="siteSmall"
               sx={(theme) => ({
                 color: theme.palette.text.secondary,
-                ...theme.typography.siteSmall,
               })}
             >
               {`© ${new Date().getFullYear()} Thanakorn Phuttharaksa`}
@@ -119,9 +119,9 @@ const FooterLink: FC<{
       target={props.target}
       rel={props.rel}
       underline="always"
+      variant="siteLink"
       sx={(theme) => ({
         color: theme.palette.text.primary,
-        ...theme.typography.siteLink,
       })}
     >
       {props.children}

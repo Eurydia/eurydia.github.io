@@ -185,24 +185,24 @@ function HomeRoute() {
           <Stack spacing={{ xs: 4, md: 5 }} useFlexGap>
             <Stack spacing={2} useFlexGap>
               <Typography
+                variant="siteMark"
                 sx={(theme) => ({
                   color: theme.palette.primary.main,
-                  ...theme.typography.siteMark,
                 })}
               >
                 Eurydia
               </Typography>
 
-              <Typography sx={(theme) => theme.typography.siteDisplay}>
+              <Typography variant="siteDisplay">
                 Thanakorn Phuttharaksa
               </Typography>
             </Stack>
 
             <Stack spacing={1.5} useFlexGap>
               <Typography
+                variant="siteCopy"
                 sx={(theme) => ({
                   color: theme.palette.text.secondary,
-                  ...theme.typography.siteCopy,
                 })}
               >
                 If you were invited here and you are in a hurry, start with the{' '}
@@ -212,18 +212,18 @@ function HomeRoute() {
                 of my work.
               </Typography>
               <Typography
+                variant="siteCopy"
                 sx={(theme) => ({
                   color: theme.palette.text.secondary,
-                  ...theme.typography.siteCopy,
                 })}
               >
                 If you were invited here and you are not in a hurry, look
                 around.
               </Typography>
               <Typography
+                variant="siteCopy"
                 sx={(theme) => ({
                   color: theme.palette.text.secondary,
-                  ...theme.typography.siteCopy,
                 })}
               >
                 If you stumbled here, look around anyway.

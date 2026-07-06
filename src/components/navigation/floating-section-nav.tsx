@@ -42,7 +42,7 @@ export const FloatingSectionNav: FC<{
             borderRadius: theme.shape.borderRadius,
             bgcolor: alpha(theme.palette.primary.main, 0.32),
             transition: theme.transitions.create(['background-color', 'width']),
-            '&:hover': {
+            ':hover': {
               inlineSize: theme.spacing(6.75),
               bgcolor: theme.palette.primary.main,
             },
