@@ -1,15 +1,17 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import CloseIcon from '@mui/icons-material/Close'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
-import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
+import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { BulletList } from '#/components/common/bullet-list'
 import { SectionLabel } from '#/components/common/section-label'
+import { MarkdownArticle } from '#/components/content/markdown-article'
 import { MediaSlideshow } from '#/components/media/media-slideshow'
 import { useState } from 'react'
 import type { FC } from 'react'
@@ -25,8 +27,7 @@ export const ListCard: FC<{
   metaText?: string
   readMore?: {
     title: string
-    body?: string
-    bullets?: readonly string[]
+    article: string
     media?: readonly MediaItem[]
     meta?: readonly {
       label: string
@@ -138,21 +139,34 @@ export const ListCard: FC<{
           maxWidth={props.readMore.media ? 'md' : 'sm'}
         >
           <DialogTitle>
-            <Typography variant="siteTitle">{props.readMore.title}</Typography>
+            <Stack
+              direction="row"
+              spacing={3}
+              useFlexGap
+              sx={{
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Typography variant="siteTitle">
+                {props.readMore.title}
+              </Typography>
+              <IconButton
+                disableRipple
+                aria-label="Close"
+                color="primary"
+                onClick={handleReadMoreClose}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Stack>
           </DialogTitle>
           <DialogContent>
             <Stack spacing={3} useFlexGap>
               {props.readMore.media && (
                 <MediaSlideshow items={props.readMore.media} />
               )}
-              {props.readMore.body && (
-                <Typography variant="siteCopy" color="textSecondary">
-                  {props.readMore.body}
-                </Typography>
-              )}
-              {props.readMore.bullets && (
-                <BulletList items={props.readMore.bullets} />
-              )}
+              <MarkdownArticle content={props.readMore.article} />
               {props.readMore.meta && (
                 <Stack spacing={2} useFlexGap>
                   {props.readMore.meta.map((item) => (
@@ -167,16 +181,6 @@ export const ListCard: FC<{
               )}
             </Stack>
           </DialogContent>
-          <DialogActions>
-            <Button
-              disableRipple
-              variant="text"
-              color="primary"
-              onClick={handleReadMoreClose}
-            >
-              Close
-            </Button>
-          </DialogActions>
         </Dialog>
       )}
     </Paper>

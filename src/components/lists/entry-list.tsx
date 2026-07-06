@@ -30,8 +30,7 @@ export const EntryList: FC<{
           metaText={item.tools}
           readMore={{
             title: item.title,
-            body: item.detail,
-            bullets: item.details,
+            article: item.article,
             media: item.media,
             meta: [
               {

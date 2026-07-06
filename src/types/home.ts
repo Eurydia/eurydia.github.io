@@ -4,12 +4,10 @@ export type HomeEntryItem = {
   title: string
   period: string
   intro: string
-  detail: string
   notes: readonly string[]
   tools: string
-  details?: readonly string[]
+  article: string
   media?: readonly MediaItem[]
-  imageSrc?: string
 }
 
 export type HomeExperienceItem = {
@@ -17,5 +15,4 @@ export type HomeExperienceItem = {
   period: string
   organization: string
   details: readonly string[]
-  imageSrc?: string
 }
