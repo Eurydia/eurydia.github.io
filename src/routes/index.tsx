@@ -1,13 +1,12 @@
-import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { createFileRoute } from '@tanstack/react-router'
 import { PageSection } from '#/components/layout/page-section'
 import { CredentialList } from '#/components/lists/credential-list'
-import { InlineRouterLink } from '#/components/router/inline-router-link'
-import { EntryList } from '#/components/home/entry-list'
-import { ExperienceList } from '#/components/home/experience-list'
+import { EntryList } from '#/components/lists/entry-list'
+import { ExperienceList } from '#/components/lists/experience-list'
+import { AppFooter } from '#/components/app-footer'
 
 export const Route = createFileRoute('/')({ component: HomeRoute })
 
@@ -163,95 +162,38 @@ const educationItems = [
 
 function HomeRoute() {
   return (
-    <Box>
-      <Container
-        maxWidth="md"
-        sx={(theme) => ({
-          px: {
-            xs: theme.spacing(2.5),
-            sm: theme.spacing(4),
-          },
-          pt: {
-            xs: theme.spacing(10),
-            md: theme.spacing(12),
-          },
-          pb: {
-            xs: theme.spacing(8),
-            md: theme.spacing(10),
-          },
-        })}
-      >
-        <Stack spacing={{ xs: 7, md: 9 }} useFlexGap>
-          <Stack spacing={{ xs: 4, md: 5 }} useFlexGap>
-            <Stack spacing={2} useFlexGap>
-              <Typography variant="siteMark" color="primary">
-                Eurydia
-              </Typography>
+    <Container
+      maxWidth="md"
+      sx={(theme) => ({
+        paddingY: {
+          xs: theme.spacing(10),
+          md: theme.spacing(12),
+        },
+      })}
+    >
+      <Stack spacing={{ xs: 7, md: 9 }} useFlexGap>
+        <Typography variant="siteDisplay">Thanakorn Phuttharaksa</Typography>
+        <PageSection id="maintained" title="Projects I maintain">
+          <EntryList items={maintainedProjects} />
+        </PageSection>
 
-              <Typography variant="siteDisplay">
-                Thanakorn Phuttharaksa
-              </Typography>
-            </Stack>
+        <PageSection id="built" title="Other projects I have built">
+          <EntryList items={builtProjects} />
+        </PageSection>
 
-            <Stack spacing={1.5} useFlexGap>
-              <Typography variant="siteCopy" color="textSecondary">
-                If you were invited here and you are in a hurry, start with the{' '}
-                <InlineRouterLink to="/portfolio">
-                  compact summary
-                </InlineRouterLink>{' '}
-                of my work.
-              </Typography>
-              <Typography variant="siteCopy" color="textSecondary">
-                If you were invited here and you are not in a hurry, look
-                around.
-              </Typography>
-              <Typography variant="siteCopy" color="textSecondary">
-                If you stumbled here, look around anyway.
-              </Typography>
-            </Stack>
-          </Stack>
+        <PageSection id="research" title="Research and notes">
+          <EntryList items={researchItems} />
+        </PageSection>
 
-          <PageSection
-            id="maintained"
-            title="Projects I maintain"
-            body="Ongoing systems I built, maintain, and still make decisions for."
-          >
-            <EntryList items={maintainedProjects} />
-          </PageSection>
+        <PageSection id="experience" title="Experience">
+          <ExperienceList items={experienceItems} />
+        </PageSection>
 
-          <PageSection
-            id="built"
-            title="Other projects I have built"
-            body="Finished projects outside the maintained systems: what they do, what I built, and where the postmortem lives."
-          >
-            <EntryList items={builtProjects} />
-          </PageSection>
-
-          <PageSection
-            id="research"
-            title="Research and notes"
-            body="Research work and notes where the method, constraints, or evaluation matter more than deployment."
-          >
-            <EntryList items={researchItems} />
-          </PageSection>
-
-          <PageSection
-            id="experience"
-            title="Experience"
-            body="Teaching, chapter work, event delivery, and technical coordination."
-          >
-            <ExperienceList items={experienceItems} />
-          </PageSection>
-
-          <PageSection
-            id="education"
-            title="Education and certifications"
-            body="Degree, scholarship, and language qualifications."
-          >
-            <CredentialList items={educationItems} initialVisibleItems={3} />
-          </PageSection>
-        </Stack>
-      </Container>
-    </Box>
+        <PageSection id="education" title="Education and certifications">
+          <CredentialList items={educationItems} initialVisibleItems={3} />
+        </PageSection>
+        <AppFooter />
+      </Stack>
+    </Container>
   )
 }

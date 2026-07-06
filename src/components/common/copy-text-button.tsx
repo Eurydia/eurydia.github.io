@@ -6,13 +6,11 @@ import type { FC, ReactNode } from 'react'
 const defaultCopiedFeedbackDurationMs = 1500
 
 export const CopyTextButton: FC<{
-  label: string
   text: string
   copiedFeedbackDurationMs?: number
   children: ReactNode
 }> = (props) => {
   const [isCopied, setIsCopied] = useState(false)
-  const [isTooltipOpen, setIsTooltipOpen] = useState(false)
   const feedbackTimeoutRef = useRef<number | null>(null)
 
   useEffect(() => {
@@ -37,22 +35,8 @@ export const CopyTextButton: FC<{
   }
 
   return (
-    <Tooltip
-      title={isCopied ? 'Copied' : props.label}
-      open={isCopied || isTooltipOpen}
-      onOpen={() => {
-        setIsTooltipOpen(true)
-      }}
-      onClose={() => {
-        setIsTooltipOpen(false)
-      }}
-    >
-      <IconButton
-        type="button"
-        color="primary"
-        aria-label={props.label}
-        onClick={handleClick}
-      >
+    <Tooltip title={'Copied!'} open={isCopied}>
+      <IconButton color="primary" onClick={handleClick}>
         {props.children}
       </IconButton>
     </Tooltip>

@@ -1,13 +1,14 @@
-import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import { SectionLabel } from '#/components/common/section-label'
 import { ShowMore } from '#/components/common/show-more'
 import { useVisibleItems } from '#/hooks/use-visible-items'
 import type { FC } from 'react'
-import type { CredentialItem } from '#/types/credential'
+import type { HomeExperienceItem } from '#/types/home'
+import Paper from '@mui/material/Paper'
 
-export const CredentialList: FC<{
-  items: readonly CredentialItem[]
+export const ExperienceList: FC<{
+  items: readonly HomeExperienceItem[]
   initialVisibleItems?: number
   visibleItemIncrement?: number
 }> = (props) => {
@@ -29,10 +30,16 @@ export const CredentialList: FC<{
           }}
         >
           <Stack spacing={3} useFlexGap>
-            <Typography variant="siteTitle">{item.title}</Typography>
-            <Typography variant="siteFine" color="textSecondary">
-              {item.body}
-            </Typography>
+            <Stack spacing={1} useFlexGap>
+              <Typography variant="siteTitle">{item.title}</Typography>
+              <SectionLabel>{item.period}</SectionLabel>
+            </Stack>
+            <Typography variant="siteCopy">{item.organization}</Typography>
+            {item.details.map((detail) => (
+              <Typography key={detail} variant="siteFine" color="textSecondary">
+                {detail}
+              </Typography>
+            ))}
           </Stack>
         </Paper>
       ))}

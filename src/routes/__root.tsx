@@ -1,3 +1,6 @@
+import '@fontsource-variable/inter/wght.css'
+import '@fontsource-variable/stix-two-text/wght.css'
+import '@fontsource-variable/stix-two-text/wght-italic.css'
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
@@ -5,7 +8,6 @@ import CssBaseline from '@mui/material/CssBaseline'
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript'
 import { ThemeProvider } from '@mui/material/styles'
 import { theme } from '../theme'
-import { AppFooter } from '#/components/app-footer'
 import { GridBackground } from '#/components/layout/grid-background'
 import type { ReactNode } from 'react'
 
@@ -37,10 +39,7 @@ function RootDocument(props: { children: ReactNode }) {
         <InitColorSchemeScript attribute="class" defaultMode="system" />
         <ThemeProvider theme={theme} defaultMode="light">
           <CssBaseline enableColorScheme />
-          <GridBackground>
-            {props.children}
-            <AppFooter />
-          </GridBackground>
+          <GridBackground>{props.children}</GridBackground>
           <TanStackDevtools
             config={{
               position: 'bottom-right',
