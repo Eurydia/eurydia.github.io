@@ -26,40 +26,42 @@ export const ExperienceList: FC<{
       <Stack divider={<Divider />} spacing={3} useFlexGap>
         {visibleItems.map((item) => (
           <Box key={item.title} sx={{ minInlineSize: 0 }}>
-            <Grid
-              container
-              rowSpacing={2}
-              columnSpacing={3}
-              sx={{ inlineSize: '100%', minInlineSize: 0 }}
-            >
-              <Grid size={{ xs: 12, md: 8 }} sx={{ minInlineSize: 0 }}>
-                <Stack spacing={1.5} useFlexGap>
-                  <Box>
-                    <Typography variant="siteTitle">{item.title}</Typography>
-                    <SectionLabel>{item.period}</SectionLabel>
-                  </Box>
+            <Stack spacing={2} useFlexGap>
+              <Stack spacing={0.5} useFlexGap>
+                <Typography variant="siteTitle">{item.title}</Typography>
+                <SectionLabel>{item.period}</SectionLabel>
+              </Stack>
 
-                  <Typography variant="siteCopy">
-                    {item.organization}
-                  </Typography>
+              <Grid
+                container
+                rowSpacing={2}
+                columnSpacing={3}
+                sx={{ inlineSize: '100%', minInlineSize: 0 }}
+              >
+                <Grid size={{ xs: 12, md: 8 }} sx={{ minInlineSize: 0 }}>
+                  <Stack spacing={1.5} useFlexGap>
+                    <Typography variant="siteCopy">
+                      {item.organization}
+                    </Typography>
 
-                  <Stack spacing={0.75} useFlexGap>
-                    {item.details.map((detail) => (
-                      <Typography
-                        key={detail}
-                        variant="siteFine"
-                        color="textSecondary"
-                      >
-                        {detail}
-                      </Typography>
-                    ))}
+                    <Stack spacing={0.75} useFlexGap>
+                      {item.details.map((detail) => (
+                        <Typography
+                          key={detail}
+                          variant="siteFine"
+                          color="textSecondary"
+                        >
+                          {detail}
+                        </Typography>
+                      ))}
+                    </Stack>
                   </Stack>
-                </Stack>
+                </Grid>
+                <Grid size={{ xs: 12, md: 4 }} sx={{ minInlineSize: 0 }}>
+                  <ImageDisplay label={item.title} src={item.imageSrc} />
+                </Grid>
               </Grid>
-              <Grid size={{ xs: 12, md: 4 }} sx={{ minInlineSize: 0 }}>
-                <ImageDisplay label={item.title} src={item.imageSrc} />
-              </Grid>
-            </Grid>
+            </Stack>
           </Box>
         ))}
       </Stack>

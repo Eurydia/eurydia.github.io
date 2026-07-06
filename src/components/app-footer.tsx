@@ -1,113 +1,82 @@
+import GitHubIcon from '@mui/icons-material/GitHub'
+import GoogleIcon from '@mui/icons-material/Google'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
-import Link from '@mui/material/Link'
+import Divider from '@mui/material/Divider'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { alpha } from '@mui/material/styles'
-import type { FC, ReactNode } from 'react'
+import { CopyTextButton } from '#/components/common/copy-text-button'
+import { ExternalLink } from '#/components/common/external-link'
+import type { FC } from 'react'
 
 export const AppFooter: FC = () => {
   return (
-    <Box
+    <Container
+      maxWidth="md"
       sx={(theme) => ({
-        bgcolor: alpha(theme.palette.primary.main, 0.06),
-        borderTop: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
+        px: {
+          xs: theme.spacing(2.5),
+          sm: theme.spacing(4),
+        },
+        pb: {
+          xs: theme.spacing(4),
+          md: theme.spacing(5),
+        },
       })}
     >
-      <Container
-        maxWidth="lg"
-        sx={(theme) => ({
-          px: {
-            xs: theme.spacing(2.5),
-            sm: theme.spacing(4),
-          },
-          py: {
-            xs: theme.spacing(4),
-            md: theme.spacing(5),
-          },
-        })}
-      >
-        <Stack spacing={3} useFlexGap>
-          <Stack
-            direction={{
-              xs: 'column',
-              md: 'row',
-            }}
-            spacing={{
-              xs: 2.5,
-              md: 4,
-            }}
-            useFlexGap
-            sx={{
-              alignItems: {
-                xs: 'flex-start',
-                md: 'flex-end',
-              },
-              justifyContent: 'space-between',
-            }}
-          >
-            <Box>
-              <Typography variant="siteMark" color="primary">
-                Thanakorn Phuttharaksa
-              </Typography>
-              <Typography variant="siteFine" color="textSecondary">
-                Portfolio and project notes.
-              </Typography>
-            </Box>
-
-            <Stack
-              direction="row"
-              spacing={2}
-              useFlexGap
-              sx={{
-                flexWrap: 'wrap',
-              }}
-            >
-              <FooterLink href="mailto:tphuttharaksabusiness@gmail.com">
-                Email
-              </FooterLink>
-              <FooterLink
-                href="https://github.com/Eurydia"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </FooterLink>
-            </Stack>
-          </Stack>
-
-          <Box
-            sx={(theme) => ({
-              borderTop: `1px solid ${theme.palette.divider}`,
-              pt: theme.spacing(2),
-            })}
-          >
-            <Typography variant="siteSmall" color="textSecondary">
-              {`© ${new Date().getFullYear()} Thanakorn Phuttharaksa`}
+      <Divider />
+      <Stack spacing={2} useFlexGap sx={(theme) => ({ pt: theme.spacing(2) })}>
+        <Stack
+          direction={{
+            xs: 'column',
+            sm: 'row',
+          }}
+          spacing={{
+            xs: 1.5,
+            sm: 3,
+          }}
+          useFlexGap
+          sx={{
+            alignItems: {
+              xs: 'flex-start',
+              sm: 'center',
+            },
+            justifyContent: 'space-between',
+          }}
+        >
+          <Box>
+            <Typography variant="siteMark" color="primary">
+              Thanakorn Phuttharaksa
+            </Typography>
+            <Typography variant="siteFine" color="textSecondary">
+              Portfolio and project notes.
             </Typography>
           </Box>
-        </Stack>
-      </Container>
-    </Box>
-  )
-}
 
-const FooterLink: FC<{
-  href: string
-  target?: string
-  rel?: string
-  children: ReactNode
-}> = (props) => {
-  return (
-    <Link
-      href={props.href}
-      target={props.target}
-      rel={props.rel}
-      underline="always"
-      variant="siteLink"
-      color="textPrimary"
-    >
-      {props.children}
-    </Link>
+          <Stack
+            direction="row"
+            spacing={2}
+            useFlexGap
+            sx={{
+              flexWrap: 'wrap',
+            }}
+          >
+            <CopyTextButton
+              label="Gmail"
+              text="tphuttharaksabusiness@gmail.com"
+            >
+              <GoogleIcon />
+            </CopyTextButton>
+            <ExternalLink href="https://github.com/Eurydia" label="GitHub">
+              <GitHubIcon />
+            </ExternalLink>
+          </Stack>
+        </Stack>
+
+        <Typography variant="siteSmall" color="textSecondary">
+          {`© ${new Date().getFullYear()} Thanakorn Phuttharaksa`}
+        </Typography>
+      </Stack>
+    </Container>
   )
 }

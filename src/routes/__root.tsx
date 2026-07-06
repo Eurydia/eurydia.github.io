@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript'
 import { ThemeProvider } from '@mui/material/styles'
 import { theme } from '../theme'
+import { AppFooter } from '#/components/app-footer'
 import { GridBackground } from '#/components/layout/grid-background'
 import type { ReactNode } from 'react'
 
@@ -36,7 +37,10 @@ function RootDocument(props: { children: ReactNode }) {
         <InitColorSchemeScript attribute="class" defaultMode="system" />
         <ThemeProvider theme={theme} defaultMode="light">
           <CssBaseline enableColorScheme />
-          <GridBackground>{props.children}</GridBackground>
+          <GridBackground>
+            {props.children}
+            <AppFooter />
+          </GridBackground>
           <TanStackDevtools
             config={{
               position: 'bottom-right',

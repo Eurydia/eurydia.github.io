@@ -16,11 +16,11 @@ const maintainedProjects = [
     title: 'SUT Mechanical Engineering Web Platform',
     period: 'December 2025 - Present',
     intro:
-      'A bilingual Thai-English web platform for the School of Mechanical Engineering, Suranaree University of Technology.',
+      'Bilingual Thai-English platform for public content, staff records, thesis discovery, final-project discovery, and CMS workflows.',
     notes: [
-      'The school needs public content, staff records, thesis and final-project discovery, and administrative publishing in one maintainable system.',
-      'I designed and implemented the UI, frontend, backend, database, CMS structure, and bilingual content schemas.',
-      'The public site, database, and controllers for staff, thesis, and final-project discovery are complete. CMS workflows for admins, editors, and faculty are in progress.',
+      'Owned UI, frontend, backend, database, CMS structure, and bilingual content schema.',
+      'Completed the public site, database, and discovery controllers.',
+      'Building admin, editor, and faculty CMS workflows next.',
     ],
     tools: 'TypeScript, React, backend APIs, database design, CMS workflows',
     postmortem: '/catalog/sut-mechanical-engineering',
@@ -29,11 +29,11 @@ const maintainedProjects = [
     title: 'GDGoC ELTE Chapter Infrastructure',
     period: 'November 2025 - Present',
     intro:
-      'Public-facing infrastructure for Google Developer Group on Campus at Eotvos Lorand University.',
+      'Chapter web infrastructure for GDGoC ELTE: website, link hub, event resources, and writeups.',
     notes: [
-      'Chapter resources, event links, and writeups should not disappear into one-off social posts.',
-      'I built and maintained the chapter website, link hub, and structure for publishing event resources and retrospectives.',
-      'The implementation stays close to the chapter workflow: fast publication, clear navigation, and easy access to event material.',
+      'Built the public site and link hub around fast publication.',
+      'Kept event material reachable outside temporary social posts.',
+      'Maintain the structure for chapter resources and retrospectives.',
     ],
     tools: 'React, TypeScript, TanStack Router, MUI, content pipeline',
     postmortem: '/catalog/gdgoc-elte',
@@ -45,11 +45,11 @@ const builtProjects = [
     title: 'Geometric Transformation Visualizer',
     period: 'June 2025 - December 2025',
     intro:
-      'A Desmos-based classroom visualizer commissioned by the Department of Mathematics, Ayutthaya Witthayalai School.',
+      'Desmos-based classroom visualizer for translation, rotation, scaling, and reflection.',
     notes: [
-      'Mathayom 2 students needed a clearer way to see translation, rotation, scaling, and reflection as adjustable transformations.',
-      'I built an interactive visualizer around adjustable parameters and classroom demonstration flow.',
-      'It was adopted as a primary classroom demonstration tool for a cohort of about 150 students.',
+      'Commissioned by Ayutthaya Witthayalai School Mathematics Department for Mathayom 2 instruction.',
+      'Built adjustable transformation controls for classroom demonstration.',
+      'Adopted as the main demonstration tool for about 150 students.',
     ],
     tools: 'Vite, TypeScript, React, Desmos',
     postmortem: '/catalog/geometric-transformation-visualizer',
@@ -58,11 +58,11 @@ const builtProjects = [
     title: 'Structogram Builder',
     period: 'November 2023 - May 2024',
     intro:
-      'An online Nassi-Shneiderman diagram builder for programming coursework and diagram-based explanation.',
+      'Online Nassi-Shneiderman diagram builder for programming coursework.',
     notes: [
-      'Drawing structograms by hand can become slower than the programming exercise itself.',
-      'I implemented the editor-to-diagram workflow, export behavior, and documentation around the tool.',
-      'The important part was turning code structure into a diagram students could inspect, share, and reuse.',
+      'Built the editor-to-diagram flow, export behavior, and documentation.',
+      'Reduced the hand-drawing overhead around structogram assignments.',
+      'Made code structure inspectable, shareable, and reusable.',
     ],
     tools: 'React, TypeScript, Vite, MUI, CodeMirror, html-to-image',
     postmortem: '/catalog/structogram-builder',
@@ -71,11 +71,11 @@ const builtProjects = [
     title: 'GitHub Repository Aggregator',
     period: '2024',
     intro:
-      'A local-first interface for collecting repository data and making scattered GitHub state easier to inspect.',
+      'Local-first GitHub repository inspection tool for scattered project state.',
     notes: [
-      'Repository and issue tracking becomes noisy when the useful view is spread across too many GitHub pages.',
-      'I worked through GitHub API integration, local data flow, and a compact developer-facing interface.',
-      'The project is small, but it shows the kind of local tool I build when a web UI is too scattered for the task.',
+      'Collected repository data through the GitHub API.',
+      'Worked through local data flow and compact developer-facing UI.',
+      'Built for review tasks that are too scattered across GitHub pages.',
     ],
     tools: 'Tauri, Rust, React, TypeScript, GitHub API, local persistence',
     postmortem: '/catalog/github-repository-aggregator',
@@ -84,11 +84,11 @@ const builtProjects = [
     title: 'Propositional Logic Engine',
     period: '2025',
     intro:
-      'A parser and visualizer for Boolean expressions, evaluation, and syntax-tree based explanation.',
+      'Boolean expression parser and visualizer for evaluation and syntax-tree explanation.',
     notes: [
-      'Logic output is not useful when the rules and transformations are hidden behind a black box.',
-      'I built parsing, evaluation, and visual explanation around explicit expression structure.',
-      'The project is technical by nature, so the postmortem needs to explain the constraints without dressing it up as product theatre.',
+      'Implemented parsing, evaluation, and visual explanation around explicit expression structure.',
+      'Kept transformations inspectable instead of hiding output behind a black box.',
+      'Use the postmortem for implementation constraints and tradeoffs.',
     ],
     tools: 'TypeScript, Ohm.js, Monaco, KaTeX, visx',
     postmortem: '/catalog/propositional-logic-engine',
@@ -100,11 +100,11 @@ const researchItems = [
     title: 'Robot Navigation Perception Pipeline',
     period: 'July 2025 - January 2026',
     intro:
-      'Research assistant work for a robot-navigation and path-planning project at the Department of Artificial Intelligence, ELTE.',
+      'Robot-navigation perception pipeline using overhead workspace imagery.',
     notes: [
-      'The robot needed robust control from overhead workspace imagery even when object placement changed.',
-      'I trained and labeled the image-recognition model, extracted keypoints from fixed-camera frames, and published perception data through ROS messages.',
-      'The related TDK research received Second Prize, qualified for OTDK, and later received a Morgan Stanley-funded novel research award.',
+      'Labeled and trained image recognition for changing object placements.',
+      'Extracted keypoints from fixed-camera frames and published ROS perception messages.',
+      'Related TDK work received Second Prize, OTDK qualification, and a Morgan Stanley-funded award.',
     ],
     tools: 'ROS, fixed-camera imagery, image recognition, keypoint extraction',
     postmortem: '/catalog/piroska-research',
@@ -113,10 +113,10 @@ const researchItems = [
     title: 'TDK / OTDK Research Project',
     period: '2025',
     intro:
-      'Research writing and presentation around the robot-navigation project and its evaluation.',
+      'Research writing and presentation for the robot-navigation project.',
     notes: [
-      'I prepared the research project for TDK presentation and later OTDK qualification.',
-      'This is not just a credential line. The research page should keep the method, constraints, and what I learned visible.',
+      'Prepared the project for TDK presentation and OTDK qualification.',
+      'Kept method, constraints, evaluation, and lessons visible beyond the credential line.',
     ],
     tools: 'Research writing, presentation, experiment notes',
     postmortem: '/catalog/tdk-otdk',
@@ -129,9 +129,9 @@ const experienceItems = [
     period: 'October 2024 - January 2026',
     organization: 'Google Developer Group on Campus, Eotvos Lorand University',
     details: [
-      'Selected as Technical Team Leader through application, then invited to return in the following chapter.',
-      'Directed technical delivery of the chapter inaugural algorithm contest: cross-language problem set, submission workflow, judging, and a 30-participant event.',
-      'Built public-facing chapter infrastructure, including a chapter-branded link hub and groundwork for a post-event retrospective platform.',
+      'Selected through application; invited to return for the following chapter.',
+      'Led the inaugural algorithm contest: problem set, submission workflow, judging, and 30 participants.',
+      'Built chapter infrastructure, including the link hub and retrospective platform groundwork.',
     ],
   },
   {
@@ -140,8 +140,8 @@ const experienceItems = [
     organization:
       'Department of Programming Languages and Compilers, Eotvos Lorand University',
     details: [
-      'Graded weekly coursework for about 45 students and provided regular feedback throughout the term.',
-      'Held 10 consultation sessions across a 12-week term, including weekend support, with roughly 10 students per session.',
+      'Graded weekly coursework for about 45 students with regular feedback.',
+      'Held 10 consultation sessions across 12 weeks, including weekend support.',
     ],
   },
 ] as const
@@ -149,15 +149,15 @@ const experienceItems = [
 const educationItems = [
   {
     title: 'Bachelor of Science in Computer Science with Honors',
-    body: 'Eotvos Lorand University, Budapest. Cumulative Grade Average: 4.51 / 5.00. Stipendium Hungaricum Scholarship.',
+    body: 'Eotvos Lorand University, Budapest. CGA 4.51 / 5.00. Stipendium Hungaricum Scholarship.',
   },
   {
     title: 'IELTS Academic',
-    body: 'Overall Band Score: 7.5, CEFR C1. Listening 8.5, Reading 8.0, Writing 6.5, Speaking 7.0.',
+    body: 'Overall 7.5, CEFR C1. Listening 8.5, Reading 8.0, Writing 6.5, Speaking 7.0.',
   },
   {
     title: 'TOEIC Listening & Reading Test',
-    body: 'Total Score: 930 / 990. Listening 465 / Reading 465.',
+    body: 'Total 930 / 990. Listening 465, Reading 465.',
   },
 ] as const
 
@@ -214,7 +214,7 @@ function HomeRoute() {
           <PageSection
             id="maintained"
             title="Projects I maintain"
-            body="These are systems I built and still treat as ongoing responsibility. The compact page gives the short version; this page gives them enough room to be read properly."
+            body="Ongoing systems I built, maintain, and still make decisions for."
           >
             <EntryList items={maintainedProjects} />
           </PageSection>
@@ -222,7 +222,7 @@ function HomeRoute() {
           <PageSection
             id="built"
             title="Other projects I have built"
-            body="Finished work that should be read as work, not as a stack inventory. Each project links to a postmortem page where the repository, screenshots, and extra details can live."
+            body="Finished projects outside the maintained systems: what they do, what I built, and where the postmortem lives."
           >
             <EntryList items={builtProjects} />
           </PageSection>
@@ -230,7 +230,7 @@ function HomeRoute() {
           <PageSection
             id="research"
             title="Research and notes"
-            body="Research-adjacent work belongs outside the normal project list because the interesting part is often method, constraint, or presentation rather than deployment."
+            body="Research work and notes where the method, constraints, or evaluation matter more than deployment."
           >
             <EntryList items={researchItems} />
           </PageSection>
@@ -238,7 +238,7 @@ function HomeRoute() {
           <PageSection
             id="experience"
             title="Experience"
-            body="Roles where the work was not only code: delivery, teaching, review, coordination, and explaining things to other people."
+            body="Teaching, chapter work, event delivery, and technical coordination."
           >
             <ExperienceList items={experienceItems} />
           </PageSection>
@@ -246,7 +246,7 @@ function HomeRoute() {
           <PageSection
             id="education"
             title="Education and certifications"
-            body="Degree, scholarship, and language qualifications. Useful context, kept separate from the project sections."
+            body="Degree, scholarship, and language qualifications."
           >
             <CredentialList items={educationItems} initialVisibleItems={3} />
           </PageSection>

@@ -50,10 +50,9 @@ export const theme = responsiveFontSizes(
           primary: {
             main: '#7c3aed',
           },
-          divider: 'rgba(124, 58, 237, 0.24)',
           text: {
-            primary: '#1f1d24',
-            secondary: '#6a6474',
+            primary: '#4a3429',
+            secondary: '#7c6a5f',
           },
         },
       },

@@ -27,54 +27,56 @@ export const EntryList: FC<{
       <Stack divider={<Divider />} spacing={3} useFlexGap>
         {visibleItems.map((item) => (
           <Box key={item.title} sx={{ minInlineSize: 0 }}>
-            <Grid
-              container
-              rowSpacing={2}
-              columnSpacing={3}
-              sx={{ inlineSize: '100%', minInlineSize: 0 }}
-            >
-              <Grid size={{ xs: 12, md: 8 }} sx={{ minInlineSize: 0 }}>
-                <Stack spacing={1.5} useFlexGap>
-                  <Box>
-                    <Typography variant="siteTitle">{item.title}</Typography>
-                    <SectionLabel>{item.period}</SectionLabel>
-                  </Box>
+            <Stack spacing={2} useFlexGap>
+              <Stack spacing={0.5} useFlexGap>
+                <Typography variant="siteTitle">{item.title}</Typography>
+                <SectionLabel>{item.period}</SectionLabel>
+              </Stack>
 
-                  <Typography variant="siteCopy">{item.intro}</Typography>
+              <Grid
+                container
+                rowSpacing={2}
+                columnSpacing={3}
+                sx={{ inlineSize: '100%', minInlineSize: 0 }}
+              >
+                <Grid size={{ xs: 12, md: 8 }} sx={{ minInlineSize: 0 }}>
+                  <Stack spacing={1.5} useFlexGap>
+                    <Typography variant="siteCopy">{item.intro}</Typography>
 
-                  <Stack spacing={0.75} useFlexGap>
-                    {item.notes.map((note) => (
-                      <Typography
-                        key={note}
-                        variant="siteFine"
-                        color="textSecondary"
-                      >
-                        {note}
+                    <Stack spacing={0.75} useFlexGap>
+                      {item.notes.map((note) => (
+                        <Typography
+                          key={note}
+                          variant="siteFine"
+                          color="textSecondary"
+                        >
+                          {note}
+                        </Typography>
+                      ))}
+                    </Stack>
+
+                    <Box>
+                      <Typography variant="siteMark">Stack</Typography>
+                      <Typography variant="siteFine" color="textSecondary">
+                        {item.tools}
                       </Typography>
-                    ))}
+                    </Box>
+
+                    <Link
+                      href={item.postmortem}
+                      underline="always"
+                      variant="siteLink"
+                      color="primary"
+                    >
+                      Read postmortem
+                    </Link>
                   </Stack>
-
-                  <Box>
-                    <Typography variant="siteMark">Stack</Typography>
-                    <Typography variant="siteFine" color="textSecondary">
-                      {item.tools}
-                    </Typography>
-                  </Box>
-
-                  <Link
-                    href={item.postmortem}
-                    underline="always"
-                    variant="siteLink"
-                    color="primary"
-                  >
-                    Read postmortem
-                  </Link>
-                </Stack>
+                </Grid>
+                <Grid size={{ xs: 12, md: 4 }} sx={{ minInlineSize: 0 }}>
+                  <ImageDisplay label={item.title} src={item.imageSrc} />
+                </Grid>
               </Grid>
-              <Grid size={{ xs: 12, md: 4 }} sx={{ minInlineSize: 0 }}>
-                <ImageDisplay label={item.title} src={item.imageSrc} />
-              </Grid>
-            </Grid>
+            </Stack>
           </Box>
         ))}
       </Stack>

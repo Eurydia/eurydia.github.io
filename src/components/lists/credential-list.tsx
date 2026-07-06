@@ -25,22 +25,25 @@ export const CredentialList: FC<{
       <Stack divider={<Divider />} spacing={3} useFlexGap>
         {visibleItems.map((item) => (
           <Box key={item.title} sx={{ minInlineSize: 0 }}>
-            <Grid
-              container
-              rowSpacing={2}
-              columnSpacing={3}
-              sx={{ inlineSize: '100%', minInlineSize: 0 }}
-            >
-              <Grid size={{ xs: 12, md: 8 }} sx={{ minInlineSize: 0 }}>
-                <Typography variant="siteTitle">{item.title}</Typography>
-                <Typography variant="siteFine" color="textSecondary">
-                  {item.body}
-                </Typography>
+            <Stack spacing={2} useFlexGap>
+              <Typography variant="siteTitle">{item.title}</Typography>
+
+              <Grid
+                container
+                rowSpacing={2}
+                columnSpacing={3}
+                sx={{ inlineSize: '100%', minInlineSize: 0 }}
+              >
+                <Grid size={{ xs: 12, md: 8 }} sx={{ minInlineSize: 0 }}>
+                  <Typography variant="siteFine" color="textSecondary">
+                    {item.body}
+                  </Typography>
+                </Grid>
+                <Grid size={{ xs: 12, md: 4 }} sx={{ minInlineSize: 0 }}>
+                  <ImageDisplay label={item.title} src={item.imageSrc} />
+                </Grid>
               </Grid>
-              <Grid size={{ xs: 12, md: 4 }} sx={{ minInlineSize: 0 }}>
-                <ImageDisplay label={item.title} src={item.imageSrc} />
-              </Grid>
-            </Grid>
+            </Stack>
           </Box>
         ))}
       </Stack>
