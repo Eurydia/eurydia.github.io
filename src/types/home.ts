@@ -1,18 +1,12 @@
 import type { MediaItem } from '#/types/media'
 
-export type HomeEntryItem = {
-  title: string
-  period: string
-  intro: string
-  notes: readonly string[]
-  tools: string
-  article: string
-  media?: readonly MediaItem[]
-}
+export type HomeSection =
+  'maintained' | 'built' | 'research' | 'experience' | 'education'
 
-export type HomeExperienceItem = {
-  title: string
-  period: string
-  organization: string
-  details: readonly string[]
+export type HomeEntryItem = {
+  key: string
+  period?: string
+  card: string
+  detailed: string
+  media?: readonly MediaItem[]
 }

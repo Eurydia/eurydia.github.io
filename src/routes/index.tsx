@@ -2,9 +2,7 @@ import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
 import { createFileRoute } from '@tanstack/react-router'
 import { PageSection } from '#/components/layout/page-section'
-import { CredentialList } from '#/components/lists/credential-list'
 import { EntryList } from '#/components/lists/entry-list'
-import { ExperienceList } from '#/components/lists/experience-list'
 import { AppFooter } from '#/components/app-footer'
 import { AppHeader } from '#/components/app-header'
 import { LandingHero } from '#/components/landing/landing-hero'
@@ -61,7 +59,7 @@ function HomeRoute() {
           title="Experience"
           count={experienceItems.length}
         >
-          <ExperienceList items={experienceItems} />
+          <EntryList items={experienceItems} />
         </PageSection>
 
         <PageSection
@@ -69,7 +67,7 @@ function HomeRoute() {
           title="Education and certifications"
           count={educationItems.length}
         >
-          <CredentialList items={educationItems} initialVisibleItems={3} />
+          <EntryList items={educationItems} initialVisibleItems={3} />
         </PageSection>
         <AppFooter />
       </Stack>

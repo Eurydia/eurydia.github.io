@@ -34,6 +34,11 @@ export const MarkdownArticle: FC<{ content: string }> = (props) => {
               {markdownProps.children}
             </Box>
           ),
+          h1: (markdownProps) => (
+            <Typography variant="siteTitle" color="textPrimary">
+              {markdownProps.children}
+            </Typography>
+          ),
           h2: (markdownProps) => (
             <Typography variant="siteTitle" color="textPrimary">
               {markdownProps.children}

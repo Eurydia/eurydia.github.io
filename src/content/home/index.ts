@@ -1,51 +1,91 @@
-import {
-  allBuiltProjects,
-  allEducationItems,
-  allExperienceItems,
-  allMaintainedProjects,
-  allResearchItems,
-} from 'content-collections'
-import type { CredentialItem } from '#/types/credential'
-import type { HomeEntryItem, HomeExperienceItem } from '#/types/home'
+import { allHomeEntries } from 'content-collections'
+import type { HomeEntryItem, HomeSection } from '#/types/home'
 
-type OrderedItem<T> = T & { order: number }
+type HomeEntryDocument = (typeof allHomeEntries)[number]
 
-const sortByOrder = <T>(items: readonly OrderedItem<T>[]) => {
-  return [...items].sort((left, right) => left.order - right.order)
+type GroupedHomeEntry = {
+  card?: HomeEntryDocument
+  detailed?: HomeEntryDocument
 }
 
-const toEntryItems = (items: readonly OrderedItem<HomeEntryItem>[]) => {
-  return sortByOrder(items).map((item) => ({
-    title: item.title,
-    period: item.period,
-    intro: item.intro,
-    notes: item.notes,
-    tools: item.tools,
-    article: item.article,
-    media: item.media,
-  }))
+type HomeEntryWithOrder = HomeEntryItem & {
+  order: number
 }
 
-const toExperienceItems = (
-  items: readonly OrderedItem<HomeExperienceItem>[],
-) => {
-  return sortByOrder(items).map((item) => ({
-    title: item.title,
-    period: item.period,
-    organization: item.organization,
-    details: item.details,
-  }))
+const getEntryKey = (document: HomeEntryDocument) => {
+  return document._meta.path
+    .replaceAll('\\', '/')
+    .replace(/\/(card|detailed)$/, '')
 }
 
-const toCredentialItems = (items: readonly OrderedItem<CredentialItem>[]) => {
-  return sortByOrder(items).map((item) => ({
-    title: item.title,
-    body: item.body,
-  }))
+const groups = new Map<string, GroupedHomeEntry>()
+
+for (const document of allHomeEntries) {
+  const entryKey = getEntryKey(document)
+  const group = groups.get(entryKey) ?? {}
+
+  if (document.kind === 'card') {
+    group.card = document
+  }
+
+  if (document.kind === 'detailed') {
+    group.detailed = document
+  }
+
+  groups.set(entryKey, group)
 }
 
-export const maintainedProjects = toEntryItems(allMaintainedProjects)
-export const builtProjects = toEntryItems(allBuiltProjects)
-export const researchItems = toEntryItems(allResearchItems)
-export const experienceItems = toExperienceItems(allExperienceItems)
-export const educationItems = toCredentialItems(allEducationItems)
+const toHomeEntryWithOrder = (
+  section: HomeSection,
+  key: string,
+  group: GroupedHomeEntry,
+): HomeEntryWithOrder | undefined => {
+  if (!group.card) {
+    throw new Error(`Missing card.md for ${key}`)
+  }
+
+  if (!group.detailed) {
+    throw new Error(`Missing detailed.md for ${key}`)
+  }
+
+  if (group.card.section !== section) {
+    return undefined
+  }
+
+  return {
+    key,
+    order: group.card.order,
+    period: group.card.period || undefined,
+    card: group.card.content,
+    detailed: group.detailed.content,
+    media: group.detailed.media ?? group.card.media,
+  }
+}
+
+const isHomeEntryWithOrder = (
+  item: HomeEntryWithOrder | undefined,
+): item is HomeEntryWithOrder => {
+  return Boolean(item)
+}
+
+const toSectionItems = (section: HomeSection) => {
+  return [...groups.entries()]
+    .map(([key, group]) => toHomeEntryWithOrder(section, key, group))
+    .filter(isHomeEntryWithOrder)
+    .sort((left, right) => left.order - right.order)
+    .map((item) => ({
+      key: item.key,
+      period: item.period,
+      card: item.card,
+      detailed: item.detailed,
+      media: item.media,
+    }))
+}
+
+export const maintainedProjects = toSectionItems('maintained')
+export const builtProjects = toSectionItems('built')
+export const researchItems = toSectionItems('research')
+export const experienceItems = toSectionItems('experience')
+export const educationItems = toSectionItems('education')
+
+

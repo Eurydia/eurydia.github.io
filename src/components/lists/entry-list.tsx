@@ -20,24 +20,13 @@ export const EntryList: FC<{
     <Stack spacing={3} useFlexGap>
       {visibleItems.map((item, index) => (
         <ListCard
-          key={item.title}
+          key={item.key}
           index={String(index + 1).padStart(2, '0')}
           label={item.period}
-          title={item.title}
-          body={item.intro}
-          bullets={item.notes}
-          metaLabel="Stack"
-          metaText={item.tools}
+          card={item.card}
           readMore={{
-            title: item.title,
-            article: item.article,
+            article: item.detailed,
             media: item.media,
-            meta: [
-              {
-                label: 'Stack',
-                value: item.tools,
-              },
-            ],
           }}
         />
       ))}

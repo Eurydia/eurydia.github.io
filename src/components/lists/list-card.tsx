@@ -4,13 +4,11 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
-import DialogTitle from '@mui/material/DialogTitle'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { BulletList } from '#/components/common/bullet-list'
-import { SectionLabel } from '#/components/common/section-label'
+import { alpha } from '@mui/material/styles'
 import { MarkdownArticle } from '#/components/content/markdown-article'
 import { MediaSlideshow } from '#/components/media/media-slideshow'
 import { useState } from 'react'
@@ -20,19 +18,10 @@ import type { MediaItem } from '#/types/media'
 export const ListCard: FC<{
   index: string
   label?: string
-  title: string
-  body?: string
-  bullets?: readonly string[]
-  metaLabel?: string
-  metaText?: string
+  card: string
   readMore?: {
-    title: string
     article: string
     media?: readonly MediaItem[]
-    meta?: readonly {
-      label: string
-      value: string
-    }[]
   }
 }> = (props) => {
   const [isReadMoreOpen, setIsReadMoreOpen] = useState(false)
@@ -45,27 +34,52 @@ export const ListCard: FC<{
     setIsReadMoreOpen(false)
   }
 
+  const handleDialogClose = (
+    _event: object,
+    reason: 'backdropClick' | 'escapeKeyDown',
+  ) => {
+    if (reason === 'backdropClick') {
+      return
+    }
+
+    handleReadMoreClose()
+  }
+
   return (
     <Paper
       variant="outlined"
       sx={(theme) => ({
         position: 'relative',
-        overflow: 'hidden',
+        overflow: 'visible',
         padding: theme.spacing(3),
+        borderColor: theme.palette.divider,
+        borderRadius: 0,
         backgroundColor: theme.palette.background.paper,
-        transition: theme.transitions.create(['box-shadow']),
+        transition: theme.transitions.create(['border-color', 'box-shadow']),
         '::before': {
           content: '""',
           position: 'absolute',
-          insetBlockStart: 0,
-          insetInlineStart: 0,
-          inlineSize: theme.spacing(1.5),
-          blockSize: theme.spacing(1.5),
-          borderBlockStart: `2px solid ${theme.palette.primary.main}`,
-          borderInlineStart: `2px solid ${theme.palette.primary.main}`,
+          top: 0,
+          left: 0,
+          width: theme.spacing(1.5),
+          height: theme.spacing(1.5),
+          borderTop: `2px solid ${alpha(theme.palette.primary.main, 0.68)}`,
+          borderLeft: `2px solid ${alpha(theme.palette.primary.main, 0.68)}`,
+          transition: theme.transitions.create([
+            'border-color',
+            'width',
+            'height',
+          ]),
         },
-        ':hover': {
+        ':hover, :focus-within': {
+          borderColor: alpha(theme.palette.primary.main, 0.72),
           boxShadow: `${theme.spacing(0.5)} ${theme.spacing(0.5)} 0 ${theme.palette.primary.main}`,
+        },
+        ':hover::before, :focus-within::before': {
+          width: theme.spacing(2.5),
+          height: theme.spacing(2.5),
+          borderTopColor: theme.palette.primary.main,
+          borderLeftColor: theme.palette.primary.main,
         },
       })}
     >
@@ -79,7 +93,7 @@ export const ListCard: FC<{
             justifyContent: 'space-between',
           }}
         >
-          <Typography variant="siteSmall" color="textSecondary">
+          <Typography variant="siteSmall" color="primary">
             {props.index}
           </Typography>
           <Box
@@ -94,28 +108,7 @@ export const ListCard: FC<{
             </Typography>
           )}
         </Stack>
-        <Typography variant="siteTitle">{props.title}</Typography>
-        {props.body && (
-          <Typography variant="siteCopy" color="textSecondary">
-            {props.body}
-          </Typography>
-        )}
-        {props.bullets && <BulletList items={props.bullets} />}
-        {props.metaLabel && props.metaText && (
-          <Stack
-            spacing={1}
-            useFlexGap
-            sx={(theme) => ({
-              borderTop: `1px solid ${theme.palette.divider}`,
-              paddingTop: theme.spacing(1.75),
-            })}
-          >
-            <SectionLabel>{props.metaLabel}</SectionLabel>
-            <Typography variant="siteFine" color="textSecondary">
-              {props.metaText}
-            </Typography>
-          </Stack>
-        )}
+        <MarkdownArticle content={props.card} />
         {props.readMore && (
           <Box>
             <Button
@@ -134,51 +127,30 @@ export const ListCard: FC<{
       {props.readMore && (
         <Dialog
           open={isReadMoreOpen}
-          onClose={handleReadMoreClose}
+          onClose={handleDialogClose}
           fullWidth
           maxWidth={props.readMore.media ? 'md' : 'sm'}
         >
-          <DialogTitle>
-            <Stack
-              direction="row"
-              spacing={3}
-              useFlexGap
-              sx={{
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography variant="siteTitle">
-                {props.readMore.title}
-              </Typography>
-              <IconButton
-                disableRipple
-                aria-label="Close"
-                color="primary"
-                onClick={handleReadMoreClose}
-              >
-                <CloseIcon />
-              </IconButton>
-            </Stack>
-          </DialogTitle>
+          <IconButton
+            disableRipple
+            aria-label="Close"
+            color="primary"
+            onClick={handleReadMoreClose}
+            sx={(theme) => ({
+              position: 'fixed',
+              top: theme.spacing(2),
+              left: theme.spacing(2),
+              zIndex: theme.zIndex.modal + 1,
+            })}
+          >
+            <CloseIcon />
+          </IconButton>
           <DialogContent>
             <Stack spacing={3} useFlexGap>
               {props.readMore.media && (
                 <MediaSlideshow items={props.readMore.media} />
               )}
               <MarkdownArticle content={props.readMore.article} />
-              {props.readMore.meta && (
-                <Stack spacing={2} useFlexGap>
-                  {props.readMore.meta.map((item) => (
-                    <Stack key={item.label} spacing={0.5} useFlexGap>
-                      <SectionLabel>{item.label}</SectionLabel>
-                      <Typography variant="siteFine" color="textSecondary">
-                        {item.value}
-                      </Typography>
-                    </Stack>
-                  ))}
-                </Stack>
-              )}
             </Stack>
           </DialogContent>
         </Dialog>
