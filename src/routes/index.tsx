@@ -19,7 +19,7 @@ export const Route = createFileRoute('/')({ component: HomeRoute, ssr: true })
 function HomeRoute() {
   return (
     <Container
-      maxWidth="lg"
+      maxWidth="md"
       sx={(theme) => ({
         paddingY: {
           xs: theme.spacing(10),
@@ -35,7 +35,7 @@ function HomeRoute() {
           title="Projects I maintain"
           count={maintainedProjects.length}
         >
-          <EntryList items={maintainedProjects} layout="bento" />
+          <EntryList items={maintainedProjects} />
         </PageSection>
 
         <PageSection
@@ -43,7 +43,7 @@ function HomeRoute() {
           title="Other projects I have built"
           count={builtProjects.length}
         >
-          <EntryList items={builtProjects} layout="split" />
+          <EntryList items={builtProjects} />
         </PageSection>
 
         <PageSection
@@ -51,7 +51,7 @@ function HomeRoute() {
           title="Research and notes"
           count={researchItems.length}
         >
-          <EntryList items={researchItems} layout="bento" />
+          <EntryList items={researchItems} />
         </PageSection>
 
         <PageSection
@@ -67,11 +67,7 @@ function HomeRoute() {
           title="Education and certifications"
           count={educationItems.length}
         >
-          <EntryList
-            items={educationItems}
-            layout="bento"
-            initialVisibleItems={3}
-          />
+          <EntryList items={educationItems} initialVisibleItems={3} />
         </PageSection>
         <AppFooter />
       </Stack>

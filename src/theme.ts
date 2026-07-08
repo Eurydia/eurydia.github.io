@@ -3,6 +3,9 @@ import type { CSSProperties } from 'react'
 
 declare module '@mui/material/styles' {
   interface TypographyVariants {
+    siteCardCopy: CSSProperties
+    siteCardFine: CSSProperties
+    siteCardTitle: CSSProperties
     siteCopy: CSSProperties
     siteDisplay: CSSProperties
     siteFine: CSSProperties
@@ -14,6 +17,9 @@ declare module '@mui/material/styles' {
   }
 
   interface TypographyVariantsOptions {
+    siteCardCopy?: CSSProperties
+    siteCardFine?: CSSProperties
+    siteCardTitle?: CSSProperties
     siteCopy?: CSSProperties
     siteDisplay?: CSSProperties
     siteFine?: CSSProperties
@@ -27,6 +33,9 @@ declare module '@mui/material/styles' {
 
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
+    siteCardCopy: true
+    siteCardFine: true
+    siteCardTitle: true
     siteCopy: true
     siteDisplay: true
     siteFine: true
@@ -84,6 +93,25 @@ export const theme = responsiveFontSizes(
     typography: {
       fontFamily: documentFontFamily,
       fontWeightBold: 700,
+      siteCardCopy: {
+        fontFamily: documentFontFamily,
+        fontSize: '0.9375rem',
+        letterSpacing: 0,
+        lineHeight: 1.55,
+      },
+      siteCardFine: {
+        fontFamily: documentFontFamily,
+        fontSize: '0.9375rem',
+        letterSpacing: 0,
+        lineHeight: 1.5,
+      },
+      siteCardTitle: {
+        fontFamily: documentFontFamily,
+        fontSize: '1.75rem',
+        fontWeight: 700,
+        letterSpacing: 0,
+        lineHeight: 1.08,
+      },
       siteCopy: {
         fontFamily: documentFontFamily,
         letterSpacing: 0,
@@ -169,6 +197,9 @@ export const theme = responsiveFontSizes(
   }),
   {
     variants: [
+      'siteCardCopy',
+      'siteCardFine',
+      'siteCardTitle',
       'siteDisplay',
       'siteFine',
       'siteMark',

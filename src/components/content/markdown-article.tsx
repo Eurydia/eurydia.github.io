@@ -12,9 +12,17 @@ const isImageDisplayElement = (child: ReactNode) => {
   return isValidElement(child) && child.type === ImageDisplay
 }
 
-export const MarkdownArticle: FC<{ content: string }> = (props) => {
+export const MarkdownArticle: FC<{
+  content: string
+  imageVariant?: 'article' | 'card' | 'featured'
+  density?: 'article' | 'card'
+}> = (props) => {
+  const titleVariant = props.density === 'card' ? 'siteCardTitle' : 'siteTitle'
+  const copyVariant = props.density === 'card' ? 'siteCardCopy' : 'siteCopy'
+  const fineVariant = props.density === 'card' ? 'siteCardFine' : 'siteFine'
+
   return (
-    <Stack spacing={2} useFlexGap>
+    <Stack spacing={props.density === 'card' ? 1.5 : 2} useFlexGap>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -41,17 +49,17 @@ export const MarkdownArticle: FC<{ content: string }> = (props) => {
             </Box>
           ),
           h1: (markdownProps) => (
-            <Typography variant="siteTitle" color="textPrimary">
+            <Typography variant={titleVariant} color="textPrimary">
               {markdownProps.children}
             </Typography>
           ),
           h2: (markdownProps) => (
-            <Typography variant="siteTitle" color="textPrimary">
+            <Typography variant={titleVariant} color="textPrimary">
               {markdownProps.children}
             </Typography>
           ),
           h3: (markdownProps) => (
-            <Typography variant="siteTitle" color="textPrimary">
+            <Typography variant={titleVariant} color="textPrimary">
               {markdownProps.children}
             </Typography>
           ),
@@ -59,6 +67,7 @@ export const MarkdownArticle: FC<{ content: string }> = (props) => {
             <ImageDisplay
               label={markdownProps.alt ?? 'Image'}
               src={markdownProps.src}
+              variant={props.imageVariant ?? 'article'}
             />
           ),
           li: (markdownProps) => (
@@ -70,7 +79,7 @@ export const MarkdownArticle: FC<{ content: string }> = (props) => {
             >
               <Typography
                 component="span"
-                variant="siteFine"
+                variant={fineVariant}
                 color="textSecondary"
               >
                 {markdownProps.children}
@@ -89,7 +98,7 @@ export const MarkdownArticle: FC<{ content: string }> = (props) => {
             }
 
             return (
-              <Typography variant="siteCopy" color="textSecondary">
+              <Typography variant={copyVariant} color="textSecondary">
                 {markdownProps.children}
               </Typography>
             )
@@ -108,11 +117,11 @@ export const MarkdownArticle: FC<{ content: string }> = (props) => {
           ul: (markdownProps) => (
             <Stack
               component="ul"
-              spacing={1}
+              spacing={props.density === 'card' ? 0.5 : 1}
               useFlexGap
               sx={(theme) => ({
                 margin: 0,
-                paddingInlineStart: theme.spacing(2.5),
+                paddingInlineStart: theme.spacing(2.25),
                 color: theme.palette.text.secondary,
               })}
             >

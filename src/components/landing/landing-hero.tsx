@@ -44,7 +44,7 @@ export const LandingHero: FC = () => {
             fontStyle: 'italic',
           }}
         >
-          occasionally designer.
+          software engineer.
         </Typography>
       </Stack>
 
