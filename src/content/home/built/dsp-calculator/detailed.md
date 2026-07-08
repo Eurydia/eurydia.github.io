@@ -2,13 +2,15 @@
 kind: detailed
 section: built
 order: 90
-media:
-  - label: 'project-dsp-calculator / item planner'
-  - label: 'project-dsp-calculator / calculation result'
-  - label: 'project-dsp-calculator / item registry boundary'
 ---
 
 ## DSP Calculator
+
+![project-dsp-calculator / item planner](https://placehold.co/960x540?text=project-dsp-calculator%20%2F%20item%20planner)
+
+![project-dsp-calculator / calculation result](https://placehold.co/960x540?text=project-dsp-calculator%20%2F%20calculation%20result)
+
+![project-dsp-calculator / item registry boundary](https://placehold.co/960x540?text=project-dsp-calculator%20%2F%20item%20registry%20boundary)
 
 The public repository is a long-lived React calculator backed by `@eurydos/dsp-item-registry`, which is the important architectural detail. The app is not just a table of game items; it separates item data from the UI so calculator behavior can sit on top of a reusable registry and still be deployed as a public gh-pages project.
 

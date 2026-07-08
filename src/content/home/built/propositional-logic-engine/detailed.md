@@ -2,13 +2,15 @@
 kind: detailed
 section: built
 order: 40
-media:
-  - label: 'logic engine / expression editor'
-  - label: 'logic engine / syntax tree view'
-  - label: 'logic engine / evaluation trace'
 ---
 
 ## Propositional Logic Engine
+
+![logic engine / expression editor](https://placehold.co/960x540?text=logic%20engine%20%2F%20expression%20editor)
+
+![logic engine / syntax tree view](https://placehold.co/960x540?text=logic%20engine%20%2F%20syntax%20tree%20view)
+
+![logic engine / evaluation trace](https://placehold.co/960x540?text=logic%20engine%20%2F%20evaluation%20trace)
 
 This is the formal-rules project in the list. It is not useful because the stack is large; it is useful because parsing, evaluation, transformations, and visual explanation make the boundary of the system clear. The value is in showing how an expression becomes structure, how that structure is evaluated, and how intermediate reasoning can be inspected instead of hidden behind one final answer.
 

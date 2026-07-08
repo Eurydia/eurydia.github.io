@@ -2,13 +2,15 @@
 kind: detailed
 section: built
 order: 30
-media:
-  - label: 'repository aggregator / repository list view'
-  - label: 'repository aggregator / local project details'
-  - label: 'repository aggregator / GitHub sync state'
 ---
 
 ## GitHub Repository Aggregator
+
+![repository aggregator / repository list view](https://placehold.co/960x540?text=repository%20aggregator%20%2F%20repository%20list%20view)
+
+![repository aggregator / local project details](https://placehold.co/960x540?text=repository%20aggregator%20%2F%20local%20project%20details)
+
+![repository aggregator / GitHub sync state](https://placehold.co/960x540?text=repository%20aggregator%20%2F%20GitHub%20sync%20state)
 
 This local-first repository review tool was built for scattered project state. I could verify the broader GitHub project set and the current repo list, but the exact aggregator source is not exposed under an obvious public name. The verified behavior is collecting repository state, making project information easier to scan, and keeping the review surface local enough for repeated use.
 

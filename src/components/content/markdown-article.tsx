@@ -2,9 +2,15 @@ import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import { ImageDisplay } from '#/components/media/image-display'
+import { Children, isValidElement } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import type { FC } from 'react'
+import type { FC, ReactNode } from 'react'
+
+const isImageDisplayElement = (child: ReactNode) => {
+  return isValidElement(child) && child.type === ImageDisplay
+}
 
 export const MarkdownArticle: FC<{ content: string }> = (props) => {
   return (
@@ -44,6 +50,17 @@ export const MarkdownArticle: FC<{ content: string }> = (props) => {
               {markdownProps.children}
             </Typography>
           ),
+          h3: (markdownProps) => (
+            <Typography variant="siteTitle" color="textPrimary">
+              {markdownProps.children}
+            </Typography>
+          ),
+          img: (markdownProps) => (
+            <ImageDisplay
+              label={markdownProps.alt ?? 'Image'}
+              src={markdownProps.src}
+            />
+          ),
           li: (markdownProps) => (
             <Box
               component="li"
@@ -60,11 +77,23 @@ export const MarkdownArticle: FC<{ content: string }> = (props) => {
               </Typography>
             </Box>
           ),
-          p: (markdownProps) => (
-            <Typography variant="siteCopy" color="textSecondary">
-              {markdownProps.children}
-            </Typography>
-          ),
+          p: (markdownProps) => {
+            const children = Children.toArray(markdownProps.children)
+
+            if (children.some(isImageDisplayElement)) {
+              return (
+                <Stack spacing={2} useFlexGap>
+                  {markdownProps.children}
+                </Stack>
+              )
+            }
+
+            return (
+              <Typography variant="siteCopy" color="textSecondary">
+                {markdownProps.children}
+              </Typography>
+            )
+          },
           strong: (markdownProps) => (
             <Box
               component="strong"

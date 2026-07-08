@@ -2,13 +2,15 @@
 kind: detailed
 section: built
 order: 10
-media:
-  - label: 'project-geometric-transformation-explorer / controls'
-  - label: 'project-geometric-transformation-explorer / Desmos graph'
-  - label: 'project-geometric-transformation-explorer / classroom mode'
 ---
 
 ## Geometric Transformation Visualizer
+
+![project-geometric-transformation-explorer / controls](https://placehold.co/960x540?text=project-geometric-transformation-explorer%20%2F%20controls)
+
+![project-geometric-transformation-explorer / Desmos graph](https://placehold.co/960x540?text=project-geometric-transformation-explorer%20%2F%20Desmos%20graph)
+
+![project-geometric-transformation-explorer / classroom mode](https://placehold.co/960x540?text=project-geometric-transformation-explorer%20%2F%20classroom%20mode)
 
 This was built as a classroom tool for Mathayom 2 geometry instruction, with Desmos handling the graphing surface and React handling the surrounding control flow. The package metadata shows a focused frontend stack with MUI, TanStack Form, TanStack Router, Desmos, zod, and MathJax-related tooling, which fits the actual requirement: parameter changes should be visible enough for a class demonstration.
 

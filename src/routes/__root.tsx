@@ -11,6 +11,28 @@ import { theme } from '../theme'
 import { GridBackground } from '#/components/layout/grid-background'
 import type { ReactNode } from 'react'
 
+const siteUrl = 'https://eurydia.github.io/'
+const siteTitle = 'Thanakorn Phuttharaksa | Software Portfolio'
+const siteDescription =
+  'Software portfolio for Thanakorn Phuttharaksa: maintained systems, finished projects, research notes, experience, education, and certifications.'
+const siteImage = `${siteUrl}logo512.png`
+const structuredData = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Thanakorn Phuttharaksa',
+  url: siteUrl,
+  image: siteImage,
+  sameAs: ['https://github.com/eurydia'],
+  knowsAbout: [
+    'React',
+    'TypeScript',
+    'software engineering',
+    'educational tools',
+    'research software',
+    'web systems',
+  ],
+})
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -22,7 +44,87 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: siteTitle,
+      },
+      {
+        name: 'description',
+        content: siteDescription,
+      },
+      {
+        name: 'author',
+        content: 'Thanakorn Phuttharaksa',
+      },
+      {
+        name: 'robots',
+        content: 'index, follow',
+      },
+      {
+        name: 'theme-color',
+        content: '#fbfaf7',
+      },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:url',
+        content: siteUrl,
+      },
+      {
+        property: 'og:title',
+        content: siteTitle,
+      },
+      {
+        property: 'og:description',
+        content: siteDescription,
+      },
+      {
+        property: 'og:image',
+        content: siteImage,
+      },
+      {
+        property: 'og:site_name',
+        content: 'Thanakorn Phuttharaksa',
+      },
+      {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        name: 'twitter:title',
+        content: siteTitle,
+      },
+      {
+        name: 'twitter:description',
+        content: siteDescription,
+      },
+      {
+        name: 'twitter:image',
+        content: siteImage,
+      },
+    ],
+    links: [
+      {
+        rel: 'canonical',
+        href: siteUrl,
+      },
+      {
+        rel: 'icon',
+        href: '/favicon.ico',
+      },
+      {
+        rel: 'apple-touch-icon',
+        href: '/logo192.png',
+      },
+      {
+        rel: 'manifest',
+        href: '/manifest.json',
+      },
+    ],
+    scripts: [
+      {
+        type: 'application/ld+json',
+        children: structuredData,
       },
     ],
   }),

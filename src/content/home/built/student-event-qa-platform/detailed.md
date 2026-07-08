@@ -2,13 +2,15 @@
 kind: detailed
 section: built
 order: 50
-media:
-  - label: 'project-amber / participant entry'
-  - label: 'project-amber / moderator queue'
-  - label: 'project-amber / session timing'
 ---
 
 ## Student Event Q&A Platform
+
+![project-amber / participant entry](https://placehold.co/960x540?text=project-amber%20%2F%20participant%20entry)
+
+![project-amber / moderator queue](https://placehold.co/960x540?text=project-amber%20%2F%20moderator%20queue)
+
+![project-amber / session timing](https://placehold.co/960x540?text=project-amber%20%2F%20session%20timing)
 
 The `project-amber` package shows this as a real application stack: TanStack Start, MUI 9, Prisma, Better Auth, Redis, rate limiting, QR code generation, countdown UI, date pickers, tests, and Wrangler deployment. That matches the shape of an event Q&A platform where entry, timing, session state, moderation, and participation limits matter more than simply collecting text in a form.
 

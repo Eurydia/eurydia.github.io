@@ -1,4 +1,6 @@
 import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 import type { FC } from 'react'
 
 export const ImageDisplay: FC<{
@@ -7,22 +9,36 @@ export const ImageDisplay: FC<{
   width?: number
   height?: number
 }> = (props) => {
-  const imageWidth = props.width ?? 420
-  const imageHeight = props.height ?? 260
+  const imageWidth = props.width ?? 960
+  const imageHeight = props.height ?? 540
   const fallbackSrc = `https://placehold.co/${imageWidth}x${imageHeight}?text=${encodeURIComponent(props.label)}`
 
   return (
-    <Box
-      component="img"
-      src={props.src ?? fallbackSrc}
-      alt={props.label}
-      loading="lazy"
+    <Stack
+      component="figure"
+      spacing={1}
+      useFlexGap
       sx={(theme) => ({
-        display: 'block',
-        objectFit: 'cover',
-        bgcolor: theme.palette.background.paper,
-        width: '100%',
+        margin: 0,
+        padding: theme.spacing(1),
+        border: `1px solid ${theme.palette.divider}`,
+        backgroundColor: theme.palette.background.default,
       })}
-    />
+    >
+      <Box
+        component="img"
+        src={props.src || fallbackSrc}
+        alt={props.label}
+        loading="lazy"
+        sx={{
+          display: 'block',
+          objectFit: 'cover',
+          width: '100%',
+        }}
+      />
+      <Typography variant="siteSmall" color="textSecondary">
+        {props.label}
+      </Typography>
+    </Stack>
   )
 }

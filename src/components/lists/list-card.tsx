@@ -10,21 +10,25 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { alpha } from '@mui/material/styles'
 import { MarkdownArticle } from '#/components/content/markdown-article'
-import { MediaSlideshow } from '#/components/media/media-slideshow'
 import { useState } from 'react'
 import type { FC } from 'react'
-import type { MediaItem } from '#/types/media'
+
+export type ListCardVariant = 'standard' | 'featured' | 'wide' | 'split'
 
 export const ListCard: FC<{
   index: string
   label?: string
   card: string
+  variant?: ListCardVariant
   readMore?: {
     article: string
-    media?: readonly MediaItem[]
   }
 }> = (props) => {
   const [isReadMoreOpen, setIsReadMoreOpen] = useState(false)
+  const cardVariant = props.variant ?? 'standard'
+  const isFeatured = cardVariant === 'featured'
+  const isWide = cardVariant === 'wide'
+  const isSplit = cardVariant === 'split'
 
   const handleReadMoreOpen = () => {
     setIsReadMoreOpen(true)
@@ -51,36 +55,55 @@ export const ListCard: FC<{
       sx={(theme) => ({
         position: 'relative',
         overflow: 'visible',
-        padding: theme.spacing(3),
+        padding: {
+          xs: theme.spacing(3),
+          md:
+            isFeatured || isSplit || isWide
+              ? theme.spacing(4)
+              : theme.spacing(3),
+        },
         borderColor: theme.palette.divider,
         borderRadius: 0,
+        borderBlockStart: isFeatured
+          ? `3px solid ${theme.palette.primary.main}`
+          : undefined,
         backgroundColor: theme.palette.background.paper,
         transition: theme.transitions.create(['border-color', 'box-shadow']),
-        '::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: theme.spacing(1.5),
-          height: theme.spacing(1.5),
-          borderTop: `2px solid ${alpha(theme.palette.primary.main, 0.68)}`,
-          borderLeft: `2px solid ${alpha(theme.palette.primary.main, 0.68)}`,
-          transition: theme.transitions.create([
-            'border-color',
-            'width',
-            'height',
-          ]),
-        },
+        '::before': isFeatured
+          ? {
+              content: 'none',
+            }
+          : {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: theme.spacing(1.5),
+              height: theme.spacing(1.5),
+              borderTop: `2px solid ${alpha(theme.palette.primary.main, 0.68)}`,
+              borderLeft: `2px solid ${alpha(theme.palette.primary.main, 0.68)}`,
+              transition: theme.transitions.create([
+                'border-color',
+                'width',
+                'height',
+              ]),
+            },
         ':hover, :focus-within': {
-          borderColor: alpha(theme.palette.primary.main, 0.72),
-          boxShadow: `${theme.spacing(0.5)} ${theme.spacing(0.5)} 0 ${theme.palette.primary.main}`,
+          borderColor: isFeatured
+            ? theme.palette.divider
+            : alpha(theme.palette.primary.main, 0.72),
+          boxShadow: isFeatured
+            ? undefined
+            : `${theme.spacing(0.5)} ${theme.spacing(0.5)} 0 ${theme.palette.primary.main}`,
         },
-        ':hover::before, :focus-within::before': {
-          width: theme.spacing(2.5),
-          height: theme.spacing(2.5),
-          borderTopColor: theme.palette.primary.main,
-          borderLeftColor: theme.palette.primary.main,
-        },
+        ':hover::before, :focus-within::before': isFeatured
+          ? undefined
+          : {
+              width: theme.spacing(2.5),
+              height: theme.spacing(2.5),
+              borderTopColor: theme.palette.primary.main,
+              borderLeftColor: theme.palette.primary.main,
+            },
       })}
     >
       <Stack spacing={3} useFlexGap>
@@ -129,12 +152,12 @@ export const ListCard: FC<{
           open={isReadMoreOpen}
           onClose={handleDialogClose}
           fullWidth
-          maxWidth={props.readMore.media ? 'md' : 'sm'}
+          scroll="body"
+          maxWidth={isFeatured || isSplit ? 'md' : 'sm'}
         >
           <IconButton
             disableRipple
-            aria-label="Close"
-            color="primary"
+            color="default"
             onClick={handleReadMoreClose}
             sx={(theme) => ({
               position: 'fixed',
@@ -146,12 +169,7 @@ export const ListCard: FC<{
             <CloseIcon />
           </IconButton>
           <DialogContent>
-            <Stack spacing={3} useFlexGap>
-              {props.readMore.media && (
-                <MediaSlideshow items={props.readMore.media} />
-              )}
-              <MarkdownArticle content={props.readMore.article} />
-            </Stack>
+            <MarkdownArticle content={props.readMore.article} />
           </DialogContent>
         </Dialog>
       )}

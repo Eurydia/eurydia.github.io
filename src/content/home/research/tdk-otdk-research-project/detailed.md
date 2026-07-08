@@ -2,13 +2,15 @@
 kind: detailed
 section: research
 order: 20
-media:
-  - label: 'TDK research / method diagram'
-  - label: 'TDK research / result summary'
-  - label: 'TDK research / presentation slide'
 ---
 
 ## TDK / OTDK Research Project
+
+![TDK research / method diagram](https://placehold.co/960x540?text=TDK%20research%20%2F%20method%20diagram)
+
+![TDK research / result summary](https://placehold.co/960x540?text=TDK%20research%20%2F%20result%20summary)
+
+![TDK research / presentation slide](https://placehold.co/960x540?text=TDK%20research%20%2F%20presentation%20slide)
 
 This work separates research communication from implementation. The TDK and OTDK process required the project to be explainable as a method, result, and limitation set, not only as code. The presentation-facing material records what was tested, what was constrained, and what the result actually supported.
 

@@ -1,13 +1,6 @@
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { z } from 'zod'
 
-const mediaSchema = z
-  .object({
-    label: z.string(),
-    src: z.string().optional(),
-  })
-  .strict()
-
 const homeEntry = defineCollection({
   name: 'homeEntries',
   directory: 'src/content/home',
@@ -24,7 +17,6 @@ const homeEntry = defineCollection({
       ]),
       order: z.number(),
       period: z.string().optional(),
-      media: z.array(mediaSchema).optional(),
       content: z.string(),
     })
     .strict(),

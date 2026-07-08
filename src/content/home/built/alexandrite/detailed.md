@@ -2,13 +2,15 @@
 kind: detailed
 section: built
 order: 110
-media:
-  - label: 'project-alexandrite / converter input'
-  - label: 'project-alexandrite / unit categories'
-  - label: 'project-alexandrite / desktop shell'
 ---
 
 ## Alexandrite
+
+![project-alexandrite / converter input](https://placehold.co/960x540?text=project-alexandrite%20%2F%20converter%20input)
+
+![project-alexandrite / unit categories](https://placehold.co/960x540?text=project-alexandrite%20%2F%20unit%20categories)
+
+![project-alexandrite / desktop shell](https://placehold.co/960x540?text=project-alexandrite%20%2F%20desktop%20shell)
 
 The `project-alexandrite` README describes it as an advanced unit conversion calculator, and the package metadata keeps the stack narrow: Tauri, React, TypeScript, and Vite. It is a focused desktop utility with a small application boundary instead of a broad hosted interface.
 

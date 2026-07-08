@@ -2,13 +2,15 @@
 kind: detailed
 section: built
 order: 20
-media:
-  - label: 'project-structogram-builder-online / editor'
-  - label: 'project-structogram-builder-online / diagram output'
-  - label: 'project-structogram-builder-online / export flow'
 ---
 
 ## Structogram Builder
+
+![project-structogram-builder-online / editor](https://placehold.co/960x540?text=project-structogram-builder-online%20%2F%20editor)
+
+![project-structogram-builder-online / diagram output](https://placehold.co/960x540?text=project-structogram-builder-online%20%2F%20diagram%20output)
+
+![project-structogram-builder-online / export flow](https://placehold.co/960x540?text=project-structogram-builder-online%20%2F%20export%20flow)
 
 The online builder sits on top of a separate structogram component package, which keeps the diagram rendering logic from being trapped inside one page. The app repository uses CodeMirror, html-to-image, file-saver, KaTeX, and MUI around that renderer, so the expanded work is the editor, export path, documentation surface, and the practical behavior students need when assignments require structured diagrams.
 

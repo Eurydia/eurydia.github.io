@@ -58,7 +58,6 @@ const toHomeEntryWithOrder = (
     period: group.card.period || undefined,
     card: group.card.content,
     detailed: group.detailed.content,
-    media: group.detailed.media ?? group.card.media,
   }
 }
 
@@ -78,7 +77,6 @@ const toSectionItems = (section: HomeSection) => {
       period: item.period,
       card: item.card,
       detailed: item.detailed,
-      media: item.media,
     }))
 }
 
@@ -87,5 +85,3 @@ export const builtProjects = toSectionItems('built')
 export const researchItems = toSectionItems('research')
 export const experienceItems = toSectionItems('experience')
 export const educationItems = toSectionItems('education')
-
-

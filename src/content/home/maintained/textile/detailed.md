@@ -2,13 +2,15 @@
 kind: detailed
 section: maintained
 order: 30
-media:
-  - label: 'project-textile / LaTeX source note'
-  - label: 'project-textile / rendered digital garden page'
-  - label: 'project-textile-content / note archive shape'
 ---
 
 ## Textile
+
+![project-textile / LaTeX source note](https://placehold.co/960x540?text=project-textile%20%2F%20LaTeX%20source%20note)
+
+![project-textile / rendered digital garden page](https://placehold.co/960x540?text=project-textile%20%2F%20rendered%20digital%20garden%20page)
+
+![project-textile-content / note archive shape](https://placehold.co/960x540?text=project-textile-content%20%2F%20note%20archive%20shape)
 
 The README frames Textile as a digital garden whose source format is LaTeX rather than Markdown. That gives the project a specific problem to solve: keeping the structure and character of TeX notes while rendering them inside a browser environment that was not designed around document semantics. The repo and its companion content repository make the split between engine and writing explicit.
 

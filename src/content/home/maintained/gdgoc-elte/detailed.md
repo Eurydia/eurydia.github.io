@@ -2,13 +2,15 @@
 kind: detailed
 section: maintained
 order: 20
-media:
-  - label: 'gdgoc-elte / public site overview'
-  - label: 'gdgoc-elte-linktree / event link surface'
-  - label: 'gdgoc-elte / content build pipeline'
 ---
 
 ## GDGoC ELTE Chapter Infrastructure
+
+![gdgoc-elte / public site overview](https://placehold.co/960x540?text=gdgoc-elte%20%2F%20public%20site%20overview)
+
+![gdgoc-elte-linktree / event link surface](https://placehold.co/960x540?text=gdgoc-elte-linktree%20%2F%20event%20link%20surface)
+
+![gdgoc-elte / content build pipeline](https://placehold.co/960x540?text=gdgoc-elte%20%2F%20content%20build%20pipeline)
 
 The GitHub footprint is split across the public chapter site, a link hub, and content-oriented repositories. The main site uses React, TanStack Router, MUI, and a content build pipeline with unified, remark, and rehype; the link hub is a smaller Vite deployment for quick access during events. The useful part is not the branding. It is that chapter material can survive outside temporary posts.
 

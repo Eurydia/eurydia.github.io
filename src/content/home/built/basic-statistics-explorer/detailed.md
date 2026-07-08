@@ -2,13 +2,15 @@
 kind: detailed
 section: built
 order: 70
-media:
-  - label: 'project-basic-statistics-explorer / data table'
-  - label: 'project-basic-statistics-explorer / chart view'
-  - label: 'project-basic-statistics-explorer / formula note'
 ---
 
 ## Basic Statistics Explorer
+
+![project-basic-statistics-explorer / data table](https://placehold.co/960x540?text=project-basic-statistics-explorer%20%2F%20data%20table)
+
+![project-basic-statistics-explorer / chart view](https://placehold.co/960x540?text=project-basic-statistics-explorer%20%2F%20chart%20view)
+
+![project-basic-statistics-explorer / formula note](https://placehold.co/960x540?text=project-basic-statistics-explorer%20%2F%20formula%20note)
 
 The repository package shows a compact statistics frontend using React 19, MUI 7, Chart.js, D3 Array, MathJax, and a boxplot chart plugin. That makes the project more specific than a generic chart demo: it is a teaching and inspection surface where formulas, distributions, and visual summaries need to sit near each other.
 

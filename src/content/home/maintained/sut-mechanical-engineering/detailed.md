@@ -2,13 +2,15 @@
 kind: detailed
 section: maintained
 order: 10
-media:
-  - label: 'me.eng.sut-university.site / public content map'
-  - label: 'me.eng.sut-university.site / record discovery flow'
-  - label: 'me.eng.sut-university.site / CMS role boundary'
 ---
 
 ## SUT Mechanical Engineering Web Platform
+
+![me.eng.sut-university.site / public content map](https://placehold.co/960x540?text=me.eng.sut-university.site%20%2F%20public%20content%20map)
+
+![me.eng.sut-university.site / record discovery flow](https://placehold.co/960x540?text=me.eng.sut-university.site%20%2F%20record%20discovery%20flow)
+
+![me.eng.sut-university.site / CMS role boundary](https://placehold.co/960x540?text=me.eng.sut-university.site%20%2F%20CMS%20role%20boundary)
 
 This is an active departmental web platform rather than a static faculty page. The private GitHub repository exposes the project as an ongoing system, so the work should be read at the system-boundary level: public bilingual pages, searchable academic records, and CMS flows split around the people who will maintain the content after handoff.
 

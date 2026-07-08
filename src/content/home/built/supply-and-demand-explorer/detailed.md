@@ -2,13 +2,15 @@
 kind: detailed
 section: built
 order: 80
-media:
-  - label: 'project-supply-and-demand-explorer / editable table'
-  - label: 'project-supply-and-demand-explorer / chart output'
-  - label: 'project-supply-and-demand-explorer / scenario comparison'
 ---
 
 ## Supply and Demand Explorer
+
+![project-supply-and-demand-explorer / editable table](https://placehold.co/960x540?text=project-supply-and-demand-explorer%20%2F%20editable%20table)
+
+![project-supply-and-demand-explorer / chart output](https://placehold.co/960x540?text=project-supply-and-demand-explorer%20%2F%20chart%20output)
+
+![project-supply-and-demand-explorer / scenario comparison](https://placehold.co/960x540?text=project-supply-and-demand-explorer%20%2F%20scenario%20comparison)
 
 The package metadata shows why this is not just a static economics page: Handsontable provides spreadsheet-like editing, Recharts handles the visual output, TanStack Router keeps the app structured, and test/generated-data tooling supports repeatable examples. The central behavior is edit data, observe the curve or chart response, and keep the relationship between table and graph visible.
 
