@@ -2,9 +2,9 @@
 kind: card
 section: education
 order: 15
-period: ''
+period: 'August 2022 - February 2026'
 ---
 
 ## Stipendium Hungaricum Scholarship
 
-Hungarian state scholarship awarded for undergraduate Computer Science study at Eotvos Lorand University.
+Selected through Thailand’s highly competitive national nomination process to receive a fully funded Stipendium Hungaricum scholarship at Eötvös Loránd University.

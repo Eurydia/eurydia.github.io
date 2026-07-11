@@ -4,15 +4,13 @@ import { alpha } from '@mui/material/styles'
 import { RotatingHeroText } from '#/components/landing/rotating-hero-text'
 import type { FC } from 'react'
 
-const heroPhrases = [
-  'software engineer.',
-  'Stipendium Hungaricum scholar.',
-  'ELTE alumnus.',
-  'research software builder.',
-  'educational tools maintainer.',
-] as const
-
 export const LandingHero: FC = () => {
+  const heroPhrases = [
+    'software engineer.',
+    'Stipendium Hungaricum scholar.',
+    'Eötvös Loránd University alumnus.',
+    'ex-tech lead @ GDGoC ELTE.',
+  ] as const
   return (
     <Stack
       spacing={2}

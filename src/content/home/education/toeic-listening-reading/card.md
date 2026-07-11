@@ -2,9 +2,9 @@
 kind: card
 section: education
 order: 30
-period: ''
+period: 'October 2020'
 ---
 
 ## TOEIC Listening & Reading Test
 
-Total 930 / 990. Listening 465, Reading 465.
+*First time ever taking the examination.* Total 930 / 990. Listening 465, Reading 465.

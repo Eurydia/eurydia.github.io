@@ -35,7 +35,7 @@ function HomeRoute() {
           title="Projects I maintain"
           count={maintainedProjects.length}
         >
-          <EntryList items={maintainedProjects} />
+          <EntryList items={maintainedProjects} variant="stacked" />
         </PageSection>
 
         <PageSection
@@ -43,7 +43,7 @@ function HomeRoute() {
           title="Other projects I have built"
           count={builtProjects.length}
         >
-          <EntryList items={builtProjects} />
+          <EntryList items={builtProjects} variant="stacked" />
         </PageSection>
 
         <PageSection
@@ -51,7 +51,7 @@ function HomeRoute() {
           title="Research and notes"
           count={researchItems.length}
         >
-          <EntryList items={researchItems} />
+          <EntryList items={researchItems} variant="stacked" />
         </PageSection>
 
         <PageSection
@@ -59,7 +59,7 @@ function HomeRoute() {
           title="Experience"
           count={experienceItems.length}
         >
-          <EntryList items={experienceItems} />
+          <EntryList items={experienceItems} variant="stacked" />
         </PageSection>
 
         <PageSection
@@ -67,7 +67,11 @@ function HomeRoute() {
           title="Education and certifications"
           count={educationItems.length}
         >
-          <EntryList items={educationItems} initialVisibleItems={3} />
+          <EntryList
+            variant="bento"
+            items={educationItems}
+            initialVisibleItems={3}
+          />
         </PageSection>
         <AppFooter />
       </Stack>
